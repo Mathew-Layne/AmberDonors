@@ -19,6 +19,8 @@ class CreatePatientsTable extends Migration
             $table->string('sex');
             $table->string('blood_type');
             $table->string('patient_address');
+            $table->string('city');
+            $table->string('parish');
             $table->string('patient_email');
             $table->bigInteger('patient_phoneno');
             $table->timestamps();
