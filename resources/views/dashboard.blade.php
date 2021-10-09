@@ -5,12 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>     
-    {{-- <script async defer data-soopr-token="" src="https://sdk.soopr.co/soopr.js"></script> --}}
-    {{-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> --}}
-    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> --}}
+    <title>Home</title>         
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="vendor/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="shortcut icon" href="{{ url('img/fav.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
 </head>
 

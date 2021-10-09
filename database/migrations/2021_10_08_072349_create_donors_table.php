@@ -19,10 +19,13 @@ class CreateDonorsTable extends Migration
             $table->string('sex');
             $table->string('blood_type');
             $table->string('donor_address');
+            $table->string('city');
+            $table->string('parish');
             $table->string('donor_email');
-            $table->bigInteger('donor_phoneno');            
-            $table->integer('total_donation');
-            $table->string('last_donation_date');
+            $table->bigInteger('donor_phoneno');
+            $table->string('profile_pic');
+            $table->integer('total_donation')->nullable();
+            $table->string('last_donation_date')->nullable();
             $table->timestamps();
         });
     }
