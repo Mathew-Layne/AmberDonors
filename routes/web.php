@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DonorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+// DONOR FORM
+// Route::get('/d_form', function () {
+//     return view('Donor_Form');
+// });
+
+Route::get('/d_home', function () {
+    return view('Donor_home');
+});
+
+Route::get('d_form', [DonorController::class, 'donate_submit']);
+Route::post('store-form', [DonorController::class, 'store']);
