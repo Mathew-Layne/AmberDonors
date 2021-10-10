@@ -23,23 +23,11 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-// DONOR FORM
-// Route::get('/d_form', function () {
-//     return view('Donor_Form');
-// });
-
-Route::get('/d_home', function () {
-    return view('Donor_form');
-});
-
-Route::get('d_form', [DonorController::class, 'donate_submit']);
-Route::post('store-form', [DonorController::class, 'store']);
 
 Route::get('dashboard/donor', [DonorController::class, 'index']);
 
-Route::get('register/donor', [DonorController::class, 'register']);
-
+Route::get('donor/register', [DonorController::class, 'register']);
+Route::post('donor/register', [DonorController::class, 'store']);
 
 Route::get('dashboard/patient', [PatientController::class, 'index']);
-
 Route::get('register/patient', [PatientController::class, 'register']);

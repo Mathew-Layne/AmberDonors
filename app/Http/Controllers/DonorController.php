@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class DonorController extends Controller
 {
-    public function donate_submit(){
-        return view('Donor_Form');
+    public function register(){
+        return view('donorform');
     }
 
     public function store(Request $request)
@@ -19,30 +19,34 @@ class DonorController extends Controller
         $validatedData = $request->validate
         ([
           'donor_name' => 'required',
-          'sex' => 'required',
           'blood_type' => 'required',
+          'dob' => 'required',
           'donor_address' => 'required',
+          'city' => 'required',
+          'parish' => 'required',
           'donor_email' => 'required',
           'donor_phoneno' => 'required',
-          'total_donation' => 'required',
-          'last_donation_date' => 'required',
+          'profile_pic' => 'required',
+          'user_id',
 
         ]);
           $donor = new Donor;
 
             $donor->donor_name = $request->donor_name;
-            $donor->donor_email = $request->donor_email;
-            $donor->sex = $request->sex;
             $donor->blood_type = $request->blood_type;
+            $donor->dob = $request->dob;
             $donor->donor_address = $request->donor_address;
+            $donor->city = $request->city;
+            $donor->parish = $request->parish;
+            $donor->donor_email = $request->donor_email;
             $donor->donor_phoneno = $request->donor_phoneno;
-            $donor->total_donation = $request->total_donation;
-            $donor->last_donation_date = $request->last_donation_date;
+            $donor->profile_pic = $request->profile_pic;
+            $donor->user_id = $request->user_id;
 
 
             $donor->save();
 
-            return redirect('Donor_form')->with('status', 'Form Data Has Been validated and insert');
+            return redirect('donor/register')->with('status', 'Form Data Has Been validated and insert');
 
     }
 }

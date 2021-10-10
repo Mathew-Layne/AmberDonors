@@ -178,7 +178,7 @@ fieldset {
     </div>
     <div class="container">
 
-        <form id="contact" action="{{url('store-form')}}" method="post">
+        <form id="contact" action="{{url('donor/register')}}" method="post">
             @csrf
 
           <h3>DONOR REGISTRATION FORM</h3>
@@ -191,6 +191,13 @@ fieldset {
             </div>
             @endif
 
+            <fieldset>
+                <label for="name">Profile Picture</label>
+              <input placeholder="Your name" name="donor_name" type="text" tabindex="1"  class="@error('donor_name') is-invalid @enderror form-control" autofocus>
+                  @error('donor_name')
+                  <div class="alert">{{ $message }}</div>
+                  @enderror
+            </fieldset>
 
           <fieldset>
               <label for="name">Enter Name:</label>
@@ -209,6 +216,13 @@ fieldset {
           </fieldset>
 
           <fieldset>
+              <label for="address">Address:</label>
+            <input placeholder="address" name="donor_address" type="text" tabindex="4" class="@error('donor_address') is-invalid @enderror form-control" >
+            @error('donor_address')
+            <div class="alert">{{ $message }}</div>
+            @enderror
+          </fieldset>
+          <fieldset>
               <label for="tel">Telephone</label>
             <input placeholder="Your Phone Number" name="donor_phoneno" type="telephone" class="@error('donor_phoneno') is-invalid @enderror form-control" tabindex="3" >
             @error('donor_phoneno')
@@ -217,11 +231,11 @@ fieldset {
           </fieldset>
 
           <fieldset>
-              <label for="address">Address:</label>
-            <input placeholder="address" name="donor_address" type="text" tabindex="4" class="@error('donor_address') is-invalid @enderror form-control" >
-            @error('donor_address')
-            <div class="alert">{{ $message }}</div>
-            @enderror
+              <label for="address">Date of Birth:</label>
+              <input placeholder="number of donation" name="dob" type="text" tabindex="4" class="@error('total_donation') is-invalid @enderror form-control" >
+              @error('total_donation')
+              <div class="alert">{{ $message }}</div>
+              @enderror
           </fieldset>
 
           <fieldset>
@@ -232,13 +246,6 @@ fieldset {
           @enderror
         </fieldset>
 
-        <fieldset>
-            <label for="address">Total Donation:</label>
-            <input placeholder="number of donation" name="total_donation" type="text" tabindex="4" class="@error('total_donation') is-invalid @enderror form-control" >
-            @error('total_donation')
-            <div class="alert">{{ $message }}</div>
-            @enderror
-        </fieldset>
 
         <fieldset>
           <fieldset>

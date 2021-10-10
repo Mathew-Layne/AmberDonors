@@ -11,13 +11,14 @@ class Donor extends Model
 
     protected $fillable = [
         'donor_name',
-        'donor_email',
-        'sex',
-        'blod_type',
+        'blood_type',
+        'dob',
         'donor_address',
+        'city',
+        'parish',
         'donor_phoneno',
-        'total_donation',
-        'last_donation_date',
+        'profile_pic',
+        'user_id',
     ];
 
 }
