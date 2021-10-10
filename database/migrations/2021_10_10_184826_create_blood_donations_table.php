@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDonateEventsTable extends Migration
+class CreateBloodDonationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateDonateEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('donate_events', function (Blueprint $table) {
+        Schema::create('blood_donations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('branch_id')->constrained()->onDelete('cascade');
-            $table->string('event_date');
+            $table->foreignId('donor_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('date_donated');
+            $table->integer('blood_quantity');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateDonateEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('donate_events');
+        Schema::dropIfExists('blood_donations');
     }
 }
