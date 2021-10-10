@@ -26,6 +26,7 @@ class CreateDonorsTable extends Migration
             $table->string('profile_pic');
             $table->integer('total_donation')->nullable();
             $table->string('last_donation_date')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
