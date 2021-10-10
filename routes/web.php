@@ -34,3 +34,12 @@ Route::get('/d_home', function () {
 
 Route::get('d_form', [DonorController::class, 'donate_submit']);
 Route::post('store-form', [DonorController::class, 'store']);
+
+Route::get('dashboard/donor', [DonorController::class, 'index']);
+
+Route::get('register/donor', [DonorController::class, 'register']);
+
+
+Route::get('dashboard/patient', [PatientController::class, 'index']);
+
+Route::get('register/patient', [PatientController::class, 'register']);
