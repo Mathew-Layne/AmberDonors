@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Blood;
+use App\Models\MedicalPersonnel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BloodFactory extends Factory
+class MedicalPersonnelFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Blood::class;
+    protected $model = MedicalPersonnel::class;
 
     /**
      * Define the model's default state.

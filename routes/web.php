@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DonorController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +20,12 @@ Route::get('/', function () {
 })->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('dashboard/donor', [DonorController::class, 'index']);
+
+Route::get('register/donor', [DonorController::class, 'register']);
+
+
+Route::get('dashboard/patient', [PatientController::class, 'index']);
+
+Route::get('register/patient', [PatientController::class, 'register']);

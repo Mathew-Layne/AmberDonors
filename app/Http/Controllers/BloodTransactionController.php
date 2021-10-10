@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DonateEventController extends Controller
+class BloodTransactionController extends Controller
 {
     //
 }
