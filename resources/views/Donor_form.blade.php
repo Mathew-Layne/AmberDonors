@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Donor Form</title>
-    <style>
+    {{-- <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 * {
   margin: 0;
@@ -170,7 +170,7 @@ fieldset {
     width: 100%;
     color: red;
 }
-    </style>
+    </style> --}}
 
 </head>
 <body>
