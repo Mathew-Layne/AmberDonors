@@ -23,7 +23,6 @@ class CreateDonorsTable extends Migration
             $table->string('parish');
             $table->string('donor_email');
             $table->bigInteger('donor_phoneno');
-            $table->string('profile_pic');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

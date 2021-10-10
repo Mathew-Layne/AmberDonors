@@ -190,15 +190,6 @@ fieldset {
             {{ session('status') }}
             </div>
             @endif
-
-            <fieldset>
-                <label for="name">Profile Picture</label>
-              <input placeholder="Your name" name="donor_name" type="text" tabindex="1"  class="@error('donor_name') is-invalid @enderror form-control" autofocus>
-                  @error('donor_name')
-                  <div class="alert">{{ $message }}</div>
-                  @enderror
-            </fieldset>
-
           <fieldset>
               <label for="name">Enter Name:</label>
             <input placeholder="Your name" name="donor_name" type="text" tabindex="1"  class="@error('donor_name') is-invalid @enderror form-control" autofocus>
