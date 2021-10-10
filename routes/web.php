@@ -24,7 +24,6 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-<<<<<<< HEAD
 // DONOR FORM
 // Route::get('/d_form', function () {
 //     return view('Donor_Form');
@@ -36,7 +35,7 @@ Route::get('/d_home', function () {
 
 Route::get('d_form', [DonorController::class, 'donate_submit']);
 Route::post('store-form', [DonorController::class, 'store']);
-=======
+
 Route::get('dashboard/donor', [DonorController::class, 'index']);
 
 Route::get('register/donor', [DonorController::class, 'register']);
@@ -45,4 +44,3 @@ Route::get('register/donor', [DonorController::class, 'register']);
 Route::get('dashboard/patient', [PatientController::class, 'index']);
 
 Route::get('register/patient', [PatientController::class, 'register']);
->>>>>>> 146910ba38313bc22f6914ea3ad0e7a5d52f9c6a
