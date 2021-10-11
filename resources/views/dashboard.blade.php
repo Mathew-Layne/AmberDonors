@@ -28,7 +28,7 @@
 
                     <li class="flex items-center"> <a
                             class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                            href="/blog">
+                            href="{{ url('donor/register') }}">
                             Become a Donors</a> </li>
                     <li class="flex items-center"> <a
                             class=" lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
