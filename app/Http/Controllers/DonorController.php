@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Donor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonorController extends Controller
 {
@@ -28,13 +29,13 @@ class DonorController extends Controller
         'donor_address' => 'required',
         'city' => 'required',
         'parish' => 'required',
-        'donor_email' => 'required',
+        'donor_email' => 'required|unique:donors,donor_email',
         'donor_phoneno' => 'required',
-        'profile_pic' => 'required',
-        'user_id',
+        
 
       ]);
-    $donor = new Donor;
+
+    $donor = new Donor();
 
     $donor->donor_name = $request->donor_name;
     $donor->blood_type = $request->blood_type;
@@ -44,12 +45,10 @@ class DonorController extends Controller
     $donor->parish = $request->parish;
     $donor->donor_email = $request->donor_email;
     $donor->donor_phoneno = $request->donor_phoneno;
-    $donor->profile_pic = $request->profile_pic;
-    $donor->user_id = $request->user_id;
-
+    $donor->user_id = Auth::id();
 
     $donor->save();
 
-    return redirect('donor/register')->with('status', 'Form Data Has Been validated and insert');
+    return redirect('/');
   }
 }

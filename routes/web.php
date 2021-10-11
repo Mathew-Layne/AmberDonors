@@ -27,8 +27,12 @@ require __DIR__.'/auth.php';
 
 Route::get('dashboard/donor', [DonorController::class, 'index']);
 
-Route::get('donor/register', [DonorController::class, 'register']);
-Route::post('donor/register', [DonorController::class, 'store']);
+Route::group(['middleware'=>'auth'], function(){
+    
+    Route::get('donor/register', [DonorController::class, 'register']);
+    Route::post('donor/register', [DonorController::class, 'store']);
+});
+
 
 Route::get('dashboard/patient', [RecipientController::class, 'index']);
 Route::get('register/patient', [RecipientController::class, 'register']);
