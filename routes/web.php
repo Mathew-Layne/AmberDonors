@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorController;
-use App\Http\Controllers\PatientController;
+use App\Http\Controllers\RecipientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +30,8 @@ Route::get('dashboard/donor', [DonorController::class, 'index']);
 Route::get('donor/register', [DonorController::class, 'register']);
 Route::post('donor/register', [DonorController::class, 'store']);
 
-Route::get('dashboard/patient', [PatientController::class, 'index']);
-Route::get('register/patient', [PatientController::class, 'register']);
+Route::get('dashboard/patient', [RecipientController::class, 'index']);
+Route::get('register/patient', [RecipientController::class, 'register']);
 
 Route::get('dashboard/admin', [AdminController::class, 'index']);
 Route::get('dashboard/admin/donor', [AdminController::class, 'donor']);
