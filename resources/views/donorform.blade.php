@@ -5,176 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Donor Form</title>
-    {{-- <style>
-        @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-body {
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
-  font-weight: 100;
-  font-size: 12px;
-  line-height: 30px;
-  color: #777;
-  background: #fff;
-}
-
-.main-head{
-    width: 100%;
-   height: 70vh;
-   background-image: url('https://wallpapercave.com/wp/wp4323457.jpg');
-   background-position: center;
-   background-attachment: fixed;
-   background-repeat:no-repeat;
-   background-size: 100%;
-}
-
-.container {
-  max-width: 600px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-}
-
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="tel"],
-#contact textarea
- {
-  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
-}
-
-#contact button[type="submit"]
-{
-  font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
-}
-
-#contact {
-  background: #F9F9F9;
-  padding: 25px;
-  margin: 150px 0;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-#contact h3 {
-  /* display: block; */
-  text-align: center;
-  font-size: 30px;
-  font-weight: 400;
-  margin-bottom: 10px;
-  background-color: red;
-  color: #FFF;
-  padding: 20px;
-}
-
-#contact h4 {
-  margin: 5px 0 15px;
-  display: block;
-  font-size: 13px;
-  font-weight: 400;
-}
-
-fieldset {
-  border: medium none !important;
-  margin: 0 0 10px;
-  min-width: 100%;
-  padding: 0;
-  width: 100%;
-}
-
-#contact input[type="text"],
-#contact input[type="email"],
-#contact input[type="tel"],
-#contact textarea {
-  width: 100%;
-  border: 1px solid #ccc;
-  background: #FFF;
-  margin: 0 0 5px;
-  padding: 10px;
-}
-
-#contact input[type="text"]:hover,
-#contact input[type="email"]:hover,
-#contact input[type="tel"]:hover,
-#contact textarea:hover {
-  -webkit-transition: border-color 0.3s ease-in-out;
-  -moz-transition: border-color 0.3s ease-in-out;
-  transition: border-color 0.3s ease-in-out;
-  border: 1px solid #aaa;
-}
-
-#contact textarea {
-  height: 100px;
-  max-width: 100%;
-  resize: none;
-}
-
-#contact button[type="submit"] {
-  cursor: pointer;
-  width: 100%;
-  border: none;
-  background: red;
-  color: #FFF;
-  margin: 0 0 5px;
-  padding: 10px;
-  font-size: 15px;
-}
-
-#contact button[type="submit"]:hover {
-  background: #43A047;
-  -webkit-transition: background 0.3s ease-in-out;
-  -moz-transition: background 0.3s ease-in-out;
-  transition: background-color 0.3s ease-in-out;
-}
-
-#contact button[type="submit"]:active {
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-
-
-#contact input:focus,
-#contact textarea:focus {
-  outline: 0;
-  border: 1px solid #aaa;
-}
-
-::-webkit-input-placeholder {
-  color: #888;
-}
-
-:-moz-placeholder {
-  color: #888;
-}
-
-::-moz-placeholder {
-  color: #888;
-}
-
-:-ms-input-placeholder {
-  color: #888;
-}
-
-.alert{
-    width: 100%;
-    color: red;
-}
-    </style> --}}
+    
 
 </head>
 <body>
-    <div class="main-head">
+
+  <table class="min-w-full border-collapse block md:table">
+    <thead class="block md:table-header-group">
+      <tr
+        class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name
+        </th>
+        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User
+          Name</th>
+        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email
+          Address</th>
+        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile
+        </th>
+        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+          Actions</th>
+      </tr>
+    </thead>
+    <tbody class="block md:table-row-group">
+      <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+          <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
+          <button
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+        </td>
+      </tr>
+      <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+          <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
+          <button
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+        </td>
+      </tr>
+      <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+          <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
+          <button
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+        </td>
+      </tr>
+      <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+            class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
+        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+          <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+          <button
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Edit</button>
+          <button
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+{{-- <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+      <div class="max-w-md mx-auto">
+        <div class="flex items-center space-x-5">
+          <div
+            class="h-14 w-14 bg-yellow-200 rounded-full flex flex-shrink-0 justify-center items-center text-yellow-500 text-2xl font-mono">
+            i</div>
+          <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+            <h2 class="leading-relaxed">Create an Event</h2>
+            <p class="text-sm text-gray-500 font-normal leading-relaxed">Lorem ipsum, dolor sit amet consectetur
+              adipisicing elit.</p>
+          </div>
+        </div>
+
+        <form action="">
+
+          <div class="divide-y divide-gray-200">
+            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <div class="flex flex-col">
+                <label class="leading-loose">Event Title</label>
+                <input type="text"
+                  class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  placeholder="Event title">
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">Event Subtitle</label>
+                <input type="text"
+                  class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  placeholder="Optional">
+              </div>
+              <div class="flex items-center space-x-4">
+                <div class="flex flex-col">
+                  <label class="leading-loose">Start</label>
+                  <div class="relative focus-within:text-gray-600 text-gray-400">
+                    <input type="text"
+                      class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                      placeholder="25/02/2020">
+                    <div class="absolute left-3 top-2">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-col">
+                  <label class="leading-loose">End</label>
+                  <div class="relative focus-within:text-gray-600 text-gray-400">
+                    <input type="text"
+                      class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                      placeholder="26/02/2020">
+                    <div class="absolute left-3 top-2">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <label class="leading-loose">Event Description</label>
+                <input type="text"
+                  class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                  placeholder="Optional">
+              </div>
+            </div>
+            <div class="pt-4 flex items-center space-x-4">
+              <button class="flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md focus:outline-none">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg> Cancel
+              </button>
+              <button
+                class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Create</button>
+            </div>
+          </div>
+
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+
+    {{-- <div class="main-head">
     </div>
     <div class="container">
 
@@ -254,9 +273,18 @@ fieldset {
             <div class="alert">{{ $message }}</div>
             @enderror
           </fieldset>
-        </fieldset>
+        </fieldset>         
+          <fieldset>
+            <button name="submit" type="submit" >Submit</button>
+          </fieldset>
+        </form>
+    </div> --}}
 
-          {{-- <fieldset>
+</body>
+</html>
+
+
+{{-- <fieldset>
             <div class="form-group">
                 <label class="col-md-4 control-label">State</label>
                   <div class="col-md-4 selectContainer">
@@ -285,8 +313,8 @@ fieldset {
           </fieldset> --}}
 
 
-          {{-- Radio Selection --}}
-          {{-- <fieldset>
+{{-- Radio Selection --}}
+{{-- <fieldset>
             <div class="form-group">
                 <label class="col-md-4 control-label">Have you done a blood donation before?</label>
                 <div class="col-md-4">
@@ -351,15 +379,7 @@ fieldset {
                 </div>
             </div> --}}
 
-          {{-- </fieldset>
+{{-- </fieldset>
           <fieldset>
             <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
           </fieldset> --}}
-          <fieldset>
-            <button name="submit" type="submit" >Submit</button>
-          </fieldset>
-        </form>
-    </div>
-
-</body>
-</html>
