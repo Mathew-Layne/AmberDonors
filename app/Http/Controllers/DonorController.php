@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Mail\RegisteredDonor;
 use App\Models\Donor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class DonorController extends Controller
 {
@@ -12,6 +15,7 @@ class DonorController extends Controller
   {
     return view('dash.donor');
   }
+
   public function register()
   {
     return view('donorform');
@@ -30,8 +34,7 @@ class DonorController extends Controller
         'city' => 'required',
         'parish' => 'required',
         'donor_email' => 'required|unique:donors,donor_email',
-        'donor_phoneno' => 'required',
-        
+        'donor_phoneno' => 'required',      
 
       ]);
 
@@ -48,7 +51,7 @@ class DonorController extends Controller
     $donor->user_id = Auth::id();
 
     $donor->save();
-
+      Mail::to($request->donor_email)->send(new RegisteredDonor()); 
     return redirect('/');
   }
 }

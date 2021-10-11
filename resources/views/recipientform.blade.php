@@ -26,10 +26,10 @@
           <div class="flex items-center space-x-5">
             <div
               class="h-14 w-14 bg-red-600 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl font-mono">
-              <i class="fas fa-tint"></i></div>
+              <i class="fas fa-heartbeat"></i></div>
             <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
-              <h2 class="leading-relaxed">Donor Registration</h2>
-              <p class="text-sm text-gray-500 font-normal leading-relaxed">Save a life today by becoming a doner.</p>
+              <h2 class="leading-relaxed">Patient Registration</h2>
+              <p class="text-sm text-gray-500 font-normal leading-relaxed">Please fill out the form below</p>
             </div>
           </div>
 
@@ -40,13 +40,13 @@
               <div class="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">
                 <div class="flex flex-col">
                   <label class="leading-loose">Enter Name</label>
-                  <input type="text" value="{{ Auth::user()->name }}" name="donor_name"
+                  <input type="text" placeholder="Enter Patient Name" name="donor_name"
                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                 @error('donor_name')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                   </div>
                 <div class="flex flex-col">
                   <label class="leading-loose">Enter Email</label>
-                  <input type="text" value="{{ Auth::user()->email }}" name="donor_email"
+                  <input type="text" placeholder="Enter Email" name="donor_email"
                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                      @error('donor_email')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                 </div>
@@ -97,12 +97,16 @@
                   <select name="blood_type"
                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                     <option value="">Choose Blood Type</option>
+                    <option value="A">A</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
+                    <option value="B">B</option>
                     <option value="B+">B+</option>
                     <option value="B-">B-</option>
+                    <option value="AB">AB</option>
                     <option value="AB+">AB+</option>
                     <option value="AB-">AB-</option>
+                    <option value="O">O</option>
                     <option value="O+">O+</option>
                     <option value="O-">O-</option>
                   </select>

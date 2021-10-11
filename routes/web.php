@@ -28,14 +28,15 @@ require __DIR__.'/auth.php';
 Route::get('dashboard/donor', [DonorController::class, 'index']);
 
 Route::group(['middleware'=>'auth'], function(){
-    
+
     Route::get('donor/register', [DonorController::class, 'register']);
     Route::post('donor/register', [DonorController::class, 'store']);
 });
 
 
-Route::get('dashboard/patient', [RecipientController::class, 'index']);
-Route::get('register/patient', [RecipientController::class, 'register']);
+Route::get('dashboard/recipient', [RecipientController::class, 'index']);
+Route::get('register/recipient', [RecipientController::class, 'register']);
+Route::post('register/recipient', [RecipientController::class, 'store']);
 
                             // Admin Section
 Route::get('dashboard/admin', [AdminController::class, 'index']);
