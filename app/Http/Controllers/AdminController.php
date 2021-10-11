@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Donor;
 
 class AdminController extends Controller
 {
@@ -14,8 +15,8 @@ class AdminController extends Controller
 
     public function donor() {
         session()->put('admin', 'donor');
-        
-        return view('dash.admin');
+        $donors = Donor::all();        
+        return view('dash.admin', compact('donors'));
     }
 
     public function patient() {
@@ -26,7 +27,6 @@ class AdminController extends Controller
 
     public function donations() {
         session()->put('admin', 'donations');
-        
         return view('dash.admin');
     }
 
