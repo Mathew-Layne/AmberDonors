@@ -61,7 +61,7 @@
                   <div class="flex flex-col">
                     <label class="leading-loose">City</label>
                     <div class="relative focus-within:text-gray-600 text-gray-400">
-                      <input type="text" placeholder="8763965464" name="city"
+                      <input type="text" placeholder="Enter City" name="city"
                         class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                     </div>
                     @error('city')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
@@ -117,7 +117,7 @@
                   <div class="flex flex-col">
                     <label class="leading-loose">Phone Number</label>
                     <div class="relative focus-within:text-gray-600 text-gray-400">
-                      <input type="number" placeholder="8763965464" name="donor_phoneno"
+                      <input type="number" placeholder="Enter Phone Number" name="donor_phoneno"
                         class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                       </div>
                     @error('donor_phoneno')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
