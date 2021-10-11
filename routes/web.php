@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,11 @@ Route::post('donor/register', [DonorController::class, 'store']);
 
 Route::get('dashboard/patient', [PatientController::class, 'index']);
 Route::get('register/patient', [PatientController::class, 'register']);
+
+Route::get('dashboard/admin', [AdminController::class, 'index']);
+Route::get('dashboard/admin/donor', [AdminController::class, 'donor']);
+
+
+Route::get('dashboard/admin/test', [AdminController::class, 'test']);
+
+
