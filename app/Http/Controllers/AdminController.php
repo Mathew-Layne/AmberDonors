@@ -18,6 +18,30 @@ class AdminController extends Controller
         return view('dash.admin');
     }
 
+    public function patient() {
+        session()->put('admin', 'patient');
+        
+        return view('dash.admin');
+    }
+
+    public function donations() {
+        session()->put('admin', 'donations');
+        
+        return view('dash.admin');
+    }
+
+    public function blood_request() {
+        session()->put('admin', 'blood_request');
+        
+        return view('dash.admin');
+    }
+
+    public function request_history() {
+        session()->put('admin', 'request_history');
+        
+        return view('dash.admin');
+    }
+
     public function test() {
         
         

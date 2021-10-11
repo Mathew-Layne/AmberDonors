@@ -21,7 +21,7 @@
             <div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'"
                 class="fixed z-30 inset-y-0 left-0 w-64 transition duration-300 transform bg-gray-900 overflow-y-auto lg:translate-x-0 lg:static lg:inset-0">
                 <div class="flex items-center justify-center mt-8">
-                    <div class="flex items-center w-3" style="max-width: 70%; text-align:center">
+                    <div class="flex items-center" style="max-width: 70%; text-align:center">
                         <a href="{{ url('/') }}">
                         <img class=" w-full" src="{{ url('img/logo.png') }}" alt="">
                     </a>
@@ -54,7 +54,7 @@
                     </a>
 
                     <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-                        href="/tales">
+                        href="{{ url('dashboard/admin/patient') }}">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -66,7 +66,7 @@
                     </a>
 
                     <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-                        href="/forms">
+                        href="{{ url('dashboard/admin/donations') }}">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -77,7 +77,7 @@
                         <span class="mx-3">Donations</span>
                     </a>
                     <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-                        href="/forms">
+                        href="{{ url('dashboard/admin/blood_request') }}">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -88,7 +88,7 @@
                         <span class="mx-3">Blood Request</span>
                     </a>
                     <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
-                        href="/forms">
+                        href="{{ url('dashboard/admin/request_history') }}">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -203,7 +203,7 @@
 
                         </div>
 
-                        <div class="flex flex-col mt-8">
+                        {{-- <div class="flex flex-col mt-8">
                             <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                                 <div
                                     class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -551,42 +551,278 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     
                     @elseif(session()->get('admin') == 'donor')
 
-                    <div><h1>Donor</h1></div>
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Donor</h3></div>
 
                     <div class="md:px-32 py-8">
                         <div class="shadow overflow-hidden rounded border-b border-gray-200">
-                          <table class="bg-white">
-                            <thead class="bg-gray-800 text-white">
-                              <tr>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">First Name</th>
-                                <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Last Name</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Phone Number</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email Address</td>    
-                                {{-- <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Action</td>     --}}
-                              </tr>
-                            </thead>
-                          <tbody class="text-gray-700">
-                            <tr>
-                              <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                              <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                              <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                              <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                              {{-- <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                              <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                              <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                              <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td> --}}
-                            </tr>                            
-                          </tbody>
-                          </table>
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>			
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    
+
+                    @elseif(session()->get('admin') == 'patient')
+
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Patient</h3></div>
+
+                    <div class="md:px-32 py-8">
+                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>			
+                                </tbody>
+                            </table>
                         </div>
                       </div>
                     
                     
+                    @elseif(session()->get('admin') == 'donations')
+
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Donations</h3></div>
+
+                    <div class="md:px-32 py-8">
+                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
+                                        </td>
+                                    </tr>			
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    
+                    
+                    @elseif(session()->get('admin') == 'blood_request')
+
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Blood Request</h3></div>
+
+                    <div class="md:px-32 py-8">
+                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
+                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
+                                        </td>
+                                    </tr>			
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    
                     @endif
+
+                    
                 </div>
                 </main>
             </div>

@@ -33,10 +33,15 @@ Route::post('donor/register', [DonorController::class, 'store']);
 Route::get('dashboard/patient', [RecipientController::class, 'index']);
 Route::get('register/patient', [RecipientController::class, 'register']);
 
+                            // Admin Section
 Route::get('dashboard/admin', [AdminController::class, 'index']);
 Route::get('dashboard/admin/donor', [AdminController::class, 'donor']);
+Route::get('dashboard/admin/patient', [AdminController::class, 'patient']);
+Route::get('dashboard/admin/donations', [AdminController::class, 'donations']);
+Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request']);
+Route::get('dashboard/admin/request_history', [AdminController::class, 'request_history']);
 
 
-Route::get('dashboard/admin/test', [AdminController::class, 'test']);
+// Route::get('dashboard/admin/test', [AdminController::class, 'test']);
 
 
