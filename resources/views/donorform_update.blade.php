@@ -51,7 +51,7 @@
                      @error('donor_email')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                 </div>
                 <div class="flex flex-col">
-                  <label class="leading-loose">Enter Street Address</label>
+                  <label class="leading-loose">Enter Stree Address</label>
                   <input type="text" placeholder="72 Cherry Street" name="donor_address"
                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                   @error('donor_address')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
@@ -95,7 +95,7 @@
                 <div class="flex flex-col">
                   <label class="leading-loose">Blood Type</label>
                   <select name="blood_type"
-                    class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                    disabled class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                     <option value="">Choose Blood Type</option>
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
@@ -131,7 +131,7 @@
               </div>
               <div class="pt-4 flex items-center">
                 <button type="submit"
-                  class="bg-red-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none font-bold">Register</button>
+                  class="bg-red-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none font-bold">Update</button>
               </div>
             </div>
           </form>

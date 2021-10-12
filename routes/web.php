@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\RecipientController;
+use App\Http\Controllers\UpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +50,5 @@ Route::get('dashboard/admin/request_history', [AdminController::class, 'request_
 // Route::get('dashboard/admin/test', [AdminController::class, 'test']);
 
 
+Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
+Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');
