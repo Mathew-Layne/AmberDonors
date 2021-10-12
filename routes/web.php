@@ -50,3 +50,7 @@ Route::get('dashboard/admin/request_history', [AdminController::class, 'request_
 // Route::get('dashboard/admin/test', [AdminController::class, 'test']);
 
 
+//Blood Donations
+Route::get('/inventory', function(){
+    return view('donations.storage');
+});
