@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\RecipientController;
 use Illuminate\Support\Facades\Route;
@@ -20,15 +21,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-})->name('dashboard');
+});
+
+Route::view('/dashboard', 'dashboard')
+->name('dashboard')
+->middleware('dashboardredirect');
 
 require __DIR__.'/auth.php';
+
 
 
 Route::get('dashboard/donor', [DonorController::class, 'index']);
 
 Route::group(['middleware'=>'auth'], function(){
-
+    
     Route::get('donor/register', [DonorController::class, 'register']);
     Route::post('donor/register', [DonorController::class, 'store']);
 });
