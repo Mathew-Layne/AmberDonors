@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\RegisteredDonor;
 use App\Models\Donor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -49,6 +50,10 @@ class DonorController extends Controller
     $donor->donor_email = $request->donor_email;
     $donor->donor_phoneno = $request->donor_phoneno;
     $donor->user_id = Auth::id();
+
+      User::where('id', Auth::id())->update([
+        'user_type' => 'Donor',
+      ]);
 
     $donor->save();
       Mail::to($request->donor_email)->send(new RegisteredDonor()); 
