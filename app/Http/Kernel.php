@@ -48,6 +48,14 @@ class Kernel extends HttpKernel
         'dashboardredirect' => [
             \App\Http\Middleware\DashboardRedirect::class,            
         ],
+
+        'admin' => [
+            \App\Http\Middleware\AdminMiddleware::class,
+        ],
+
+        'donor' => [
+            \App\Http\Middleware\DonorMiddleware::class,
+        ],
     ];
 
     /**
