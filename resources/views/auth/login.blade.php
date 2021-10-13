@@ -47,6 +47,9 @@
                             </a>
                             @endif
                         </div>
+                        <div class="text-center mt-1 text-gray-600 text-sm hover:text-blue-600">
+                            <a href="{{ url('/register') }}">Dont have an accout?</a>                            
+                        </div>
                     </div>
                 </div>
             </div>

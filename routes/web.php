@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\RecipientController;
+use App\Http\Controllers\UpdateController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,33 +22,65 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('dashboard');
-})->name('dashboard');
+});
+
+Route::view('/dashboard', 'dashboard')
+->name('dashboard')
+->middleware('dashboardredirect');
 
 require __DIR__.'/auth.php';
 
 
-Route::get('dashboard/donor', [DonorController::class, 'index']);
+
 
 Route::group(['middleware'=>'auth'], function(){
 
+    
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\ADMIN SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+    Route::get('dashboard/admin', [AdminController::class, 'index'])->middleware('admin');
+    Route::get('dashboard/admin/donor', [AdminController::class, 'donor'])->middleware('admin');
+    Route::get('dashboard/admin/recipient', [AdminController::class, 'recipient'])->middleware('admin');
+    Route::get('dashboard/admin/donations', [AdminController::class, 'donations'])->middleware('admin');
+    Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request'])->middleware('admin');
+    Route::get('dashboard/admin/request_history', [AdminController::class, 'request_history'])->middleware('admin');
+
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\DONOR SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
     Route::get('donor/register', [DonorController::class, 'register']);
     Route::post('donor/register', [DonorController::class, 'store']);
+
+    Route::get('dashboard/donor', [DonorController::class, 'index'])->middleware('donor');
+
+    Route::get('dashboard/donor/donate/blood', [DonorController::class, 'getBlood'])->middleware('donor');
+    Route::post('dashboard/donor/donate/blood', [DonorController::class, 'storeBlood'])->middleware('donor');
+
+    Route::get('/dashboard/donor/donation/history', [DonorController::class, 'donationHistory'])->middleware('donor');
+
+    Route::get('dashboard/donor/delete/{id}', [DonorController::class, 'destroyDonor'])->middleware('donor');
+    Route::get('dashboard/donor/edit/{id}', [DonorController::class, 'editDornor'])->middleware('donor');
+
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+    Route::get('dashboard/recipient', [RecipientController::class, 'index']);
+    Route::get('register/recipient', [RecipientController::class, 'register']);
+    Route::post('register/recipient', [RecipientController::class, 'store']);
+
 });
 
-
-Route::get('dashboard/recipient', [RecipientController::class, 'index']);
-Route::get('register/recipient', [RecipientController::class, 'register']);
-Route::post('register/recipient', [RecipientController::class, 'store']);
-
-                            // Admin Section
-Route::get('dashboard/admin', [AdminController::class, 'index']);
-Route::get('dashboard/admin/donor', [AdminController::class, 'donor']);
-Route::get('dashboard/admin/patient', [AdminController::class, 'patient']);
-Route::get('dashboard/admin/donations', [AdminController::class, 'donations']);
-Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request']);
-Route::get('dashboard/admin/request_history', [AdminController::class, 'request_history']);
+// Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
+// Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');
 
 
-// Route::get('dashboard/admin/test', [AdminController::class, 'test']);
+
+Route::get('/dashboard/admin/onApprove/{id}',[UpdateController::class, 'onApprove'])->name('donor-approved');
+Route::get('/dashboard/admin/onReject/{id}',[UpdateController::class, 'onReject'])->name('donor-rejected');
+
+
+// Route::post('/dashboard/admin/approve{id}',[UpdateController::class, 'onApprove'])->name('onapproved-donor');
+
+
+Route::get('/dashboard/admin/approve/{id}',[UpdateController::class, 'approve'])->name('recipient-approved');
+Route::get('/dashboard/admin/reject/{id}',[UpdateController::class, 'reject'])->name('recipient-rejected');
 
 

@@ -16,13 +16,15 @@ class CreateRecipientsTable extends Migration
         Schema::create('recipients', function (Blueprint $table) {
             $table->id();
             $table->string('recipient_name');
-            $table->string('recipient_address');
-            $table->string('recipient_city');
-            $table->string('recipient_parish');
-            $table->string('recipient_email');
-            $table->string('dob');
-            $table->string('recipient_phoneno');
+            $table->string('carrier_name');
+            $table->string('company_name');
+            $table->string('company_email');
+            $table->string('company_address');
+            $table->string('city');
+            $table->string('parish');
             $table->string('blood_type');
+            $table->bigInteger('company_phoneno');
+            $table->string('status')->default('Pending');
             $table->timestamps();
         });
     }

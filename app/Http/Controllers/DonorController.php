@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 
 use App\Mail\RegisteredDonor;
+use App\Models\BloodDonation;
 use App\Models\Donor;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class DonorController extends Controller
 {
+  
   public function index()
   {
-    return view('dash.donor');
+    session()->put('donor', 'profile');
+
+    $donors = Donor::where('user_id', Auth::id())->get();
+    return view('dash.donor', compact('donors'));
   }
 
   public function register()
@@ -21,10 +28,10 @@ class DonorController extends Controller
     return view('donorform');
   }
 
+
   public function store(Request $request)
 
-  {
-    // dd($request->all());
+  {    
 
     $validatedData = $request->validate([
         'donor_name' => 'required',
@@ -50,8 +57,58 @@ class DonorController extends Controller
     $donor->donor_phoneno = $request->donor_phoneno;
     $donor->user_id = Auth::id();
 
+      User::where('id', Auth::id())->update([
+        'user_type' => 'Donor',
+      ]);
+
     $donor->save();
       Mail::to($request->donor_email)->send(new RegisteredDonor()); 
+    return redirect('/dashboard/donor');
+  }
+
+  public function editDonor($id){
+
+  }
+
+  public function destroyDonor($id){
+    User::where('id', Auth::id())
+    ->delete();
+
     return redirect('/');
+  }
+
+  public function getBlood(){
+    session()->put('donor', 'donateblood');
+
+    return view('dash.donor');
+  }
+
+  public function storeBlood(Request $request){
+    date_default_timezone_set('Jamaica');
+
+    $valid = $request->validate([
+      'units' => 'required',
+    ]);
+
+    $donor = Donor::where('user_id', Auth::id())->first();
+
+    $donate = new BloodDonation();
+    $donate->donor_id = $donor->id;
+    $donate->date_donated = now();
+    $donate->blood_quantity = $request->units;
+    $donate ->save();
+
+    return redirect('dashboard/donor');
+  }
+
+  public function donationHistory(){
+    session()->put('donor', 'donationhistory');
+    $donor = Donor::where('user_id', Auth::id())->first();
+
+    $donations = DB::table('blood_donations')
+    ->join('donors', 'blood_donations.donor_id', 'donor.id')
+    ->where('donor_id', $donor->id)
+    ->get();
+    return view('dash.donor', compact('donations'));
   }
 }

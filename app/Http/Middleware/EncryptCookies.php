@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
+use Illuminate\Support\Facades\Mail;
 
 class EncryptCookies extends Middleware
 {
@@ -12,6 +13,6 @@ class EncryptCookies extends Middleware
      * @var array
      */
     protected $except = [
-        //
+    
     ];
 }

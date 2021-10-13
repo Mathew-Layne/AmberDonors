@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Donor;
+use App\Models\Recipient;
 
 class AdminController extends Controller
 {
@@ -15,14 +16,14 @@ class AdminController extends Controller
 
     public function donor() {
         session()->put('admin', 'donor');
-        $donors = Donor::all();        
+        $donors = Donor::where('status', 'Pending')->get();  
         return view('dash.admin', compact('donors'));
     }
 
-    public function patient() {
-        session()->put('admin', 'patient');
-        
-        return view('dash.admin');
+    public function recipient() {
+        session()->put('admin', 'recipient');
+        $recipients = Recipient::where('status', 'Pending')->get();
+        return view('dash.admin', compact('recipients'));
     }
 
     public function donations() {
