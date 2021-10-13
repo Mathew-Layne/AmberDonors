@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+b<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="flex items-center">
-                        <span>{{ Auth::user()->name }}</span>
+                        <span class="font-bold mx-3">{{ Auth::user()->name }}</span>
                         <div x-data="{ dropdownOpen: false }" class="relative">
                             <button @click="dropdownOpen = ! dropdownOpen"
                                 class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
@@ -107,12 +107,15 @@
                             <div x-show="dropdownOpen"
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
                                 style="display: none;">
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
-                                {{-- <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a> --}}
-                                <a href="/login"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
+
+                                <form action="{{ url('logout') }}" method="post">
+                                    @csrf
+                                    <button class="text-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white" type="submit">
+                                        Logout
+                                    </button>
+                                </form>
+                                {{-- <a href="/login"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a> --}}
                             </div>
                         </div>
 
