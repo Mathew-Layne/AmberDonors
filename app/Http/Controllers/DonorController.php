@@ -14,7 +14,10 @@ class DonorController extends Controller
 {
   public function index()
   {
-    return view('dash.donor');
+    session()->put('donor', 'profile');
+
+    $donors = Donor::where('user_id', Auth::id())->get();
+    return view('dash.donor', compact('donors'));
   }
 
   public function register()
@@ -22,10 +25,10 @@ class DonorController extends Controller
     return view('donorform');
   }
 
+
   public function store(Request $request)
 
-  {
-    // dd($request->all());
+  {    
 
     $validatedData = $request->validate([
         'donor_name' => 'required',
@@ -57,6 +60,33 @@ class DonorController extends Controller
 
     $donor->save();
       Mail::to($request->donor_email)->send(new RegisteredDonor()); 
+    return redirect('/dashboard/donor');
+  }
+
+  public function editDonor($id){
+
+  }
+
+  public function destroyDonor($id){
+    User::where('id', Auth::id())
+    ->delete();
+
     return redirect('/');
+  }
+
+  public function getBlood(){
+    session()->put('donor', 'donateblood');
+
+    return view('dash.donor');
+  }
+
+  public function storeBlood(){
+    //
+  }
+
+  public function donationHistory(){
+    session()->put('donor', 'donationhistory');
+    
+    return view('dash.donor');
   }
 }
