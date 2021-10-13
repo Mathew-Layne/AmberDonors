@@ -10,8 +10,12 @@ use Illuminate\Support\Facades\Mail;
 
 class RecipientController extends Controller
 {
-    public function index(){
-        return view('dash.recipient');
+    public function index()
+    {
+        session()->put('recipient', 'profile');
+
+        $recipients = Recipient::where('id', Auth::id())->get();
+        return view('dash.recipient', compact('recipients'));
     }
 
     public function register()
@@ -37,25 +41,37 @@ class RecipientController extends Controller
 
         ]);
 
-        Recipient::create([
-            'recipient_name' => $request->recipient_name,
-            'carrier_name' => $request->carrier_name,
-            'company_name' => $request->company_name,
-            'company_email' => $request->company_email,
-        'company_address' => $request->company_address,
-        'city' => $request->city,
-        'parish' => $request->parish,
-        'blood_type' => $request->blood_type,
-        'company_phoneno' => $request->company_phoneno,
-        'user_id' => Auth::id(),
-        ]);
+        $recipients = new Recipient();
+
+            $recipients->recipient_name = $request->recipient_name;
+            $recipients->carrier_name = $request->carrier_name;
+            $recipients->company_name = $request->company_name;
+            $recipients->company_email = $request->company_email;
+            $recipients->company_address = $request->company_address;
+            $recipients->city = $request->city;
+            $recipients->parish = $request->parish;
+            $recipients->blood_type = $request->blood_type;
+            $recipients->company_phoneno = $request->company_phoneno;
+            $recipients->user_id = Auth::id();
+        
         
 
         User::where('id', Auth::id())->update([
             'user_type' => 'Recipient',
         ]);
-
+        $recipients->save();
           Mail::to($request->recipient_email)->send(new RegisteredRecipient());
-        return redirect('/');
+        return redirect('/dashboard/recipient');
+    }
+
+    public function editRecipient($id){
+
+    }
+  
+    public function destroyRecipient($id){
+      User::where('id', Auth::id())
+      ->delete();
+  
+      return redirect('/');
     }
 }
