@@ -104,7 +104,7 @@
                     @if (session()->get('donor') == 'profile')                        
                     
                     <div class="container mx-auto px-6 py-8">
-                        <h3 class="text-gray-700 text-3xl font-medium">Profile</h3>
+                        <h3 class="text-gray-700 text-3xl font-medium"> Profile</h3>
     
                         <div class="mt-4">
                             <div class="flex flex-wrap -mx-6">
