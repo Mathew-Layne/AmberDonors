@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
 Route::group(['middleware'=>'auth'], function(){
 
     
-    /* \\\\\\\\\\\\\\\\\\\\\\\\\ADMIN SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ADMIN SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
     Route::get('dashboard/admin', [AdminController::class, 'index'])->middleware('admin');
     Route::get('dashboard/admin/donor', [AdminController::class, 'donor'])->middleware('admin');
@@ -45,7 +45,19 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request'])->middleware('admin');
     Route::get('dashboard/admin/request_history', [AdminController::class, 'request_history'])->middleware('admin');
 
-    /* \\\\\\\\\\\\\\\\\\\\\\\\\DONOR SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+    Route::get('/dashboard/admin/onApprove/{id}', [UpdateController::class, 'onApprove'])
+    ->name('donor-approved')->middleware('admin');
+
+    Route::get('/dashboard/admin/onReject/{id}', [UpdateController::class, 'onReject'])
+    ->name('donor-rejected')->middleware('admin');
+
+    Route::get('/dashboard/admin/approve/{id}', [UpdateController::class, 'approve'])
+    ->name('recipient-approved')->middleware('admin');
+
+    Route::get('/dashboard/admin/reject/{id}', [UpdateController::class, 'reject'])
+    ->name('recipient-rejected')->middleware('admin');
+
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\DONOR SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
     Route::get('donor/register', [DonorController::class, 'register']);
     Route::post('donor/register', [DonorController::class, 'store']);
@@ -60,7 +72,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('dashboard/donor/delete/{id}', [DonorController::class, 'destroyDonor'])->middleware('donor');
     Route::get('dashboard/donor/edit/{id}', [DonorController::class, 'editDornor'])->middleware('donor');
 
-    /* \\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
     Route::get('dashboard/recipient', [RecipientController::class, 'index']);
     Route::get('register/recipient', [RecipientController::class, 'register']);
@@ -68,19 +80,8 @@ Route::group(['middleware'=>'auth'], function(){
 
 });
 
-// Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
-// Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');
 
 
 
-Route::get('/dashboard/admin/onApprove/{id}',[UpdateController::class, 'onApprove'])->name('donor-approved');
-Route::get('/dashboard/admin/onReject/{id}',[UpdateController::class, 'onReject'])->name('donor-rejected');
-
-
-// Route::post('/dashboard/admin/approve{id}',[UpdateController::class, 'onApprove'])->name('onapproved-donor');
-
-
-Route::get('/dashboard/admin/approve/{id}',[UpdateController::class, 'approve'])->name('recipient-approved');
-Route::get('/dashboard/admin/reject/{id}',[UpdateController::class, 'reject'])->name('recipient-rejected');
 
 

@@ -106,7 +106,7 @@ class DonorController extends Controller
     $donor = Donor::where('user_id', Auth::id())->first();
 
     $donations = DB::table('blood_donations')
-    ->join('donors', 'blood_donations.donor_id', 'donor.id')
+    ->join('donors', 'blood_donations.donor_id', 'donors.id')
     ->where('donor_id', $donor->id)
     ->get();
     return view('dash.donor', compact('donations'));

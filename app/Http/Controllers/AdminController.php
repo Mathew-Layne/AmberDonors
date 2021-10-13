@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodDonation;
 use Illuminate\Http\Request;
 use App\Models\Donor;
 use App\Models\Recipient;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -28,7 +30,12 @@ class AdminController extends Controller
 
     public function donations() {
         session()->put('admin', 'donations');
-        return view('dash.admin');
+
+        $donations = DB::table('blood_donations')
+        ->join('donors', 'blood_donations.donor_id', 'donors.id')        
+        ->get();
+
+        return view('dash.admin', compact('donations'));
     }
 
     public function blood_request() {
