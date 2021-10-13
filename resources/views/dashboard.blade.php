@@ -100,11 +100,10 @@
                                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                                 <div class="px-4 py-5 flex-auto">
                                     <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                                        <i class="fas fa-award"></i> </div>
-                                    <h6 class="text-xl font-semibold">Awarded Agency</h6>
-                                    <p class="mt-2 mb-4 text-gray-600"> Divide details about your product or agency work
-                                        into parts. A paragraph describing a feature will be enough. </p>
+                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-600">
+                                        <i class="fas fa-users"></i> </div>
+                                    <h6 class="text-xl font-semibold">Learders</h6>
+                                    <p class="mt-2 mb-4 text-gray-600"> Amber Donors engaged new leadership and re-invigorated its strategy and operations.</p>
                                 </div>
                             </div>
                         </div>
@@ -113,11 +112,10 @@
                                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                                 <div class="px-4 py-5 flex-auto">
                                     <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                                        <i class="fas fa-retweet"></i> </div>
-                                    <h6 class="text-xl font-semibold">Free Revisions</h6>
-                                    <p class="mt-2 mb-4 text-gray-600"> Keep you user engaged by providing meaningful
-                                        information. Remember that by this time, the user is curious. </p>
+                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-600">
+                                        <i class="fas fa-heartbeat"></i> </div>
+                                    <h6 class="text-xl font-semibold">Inovators</h6>
+                                    <p class="mt-2 mb-4 text-gray-600"> Amber Donors helps purchase Trima technology for Nigeria, enabling stem cell transplantation for the first time. </p>
                                 </div>
                             </div>
                         </div>
@@ -126,11 +124,10 @@
                                 class="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                                 <div class="px-4 py-5 flex-auto">
                                     <div
-                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
-                                        <i class="fas fa-fingerprint"></i> </div>
-                                    <h6 class="text-xl font-semibold">Verified Company</h6>
-                                    <p class="mt-2 mb-4 text-gray-600"> Write a few lines about each one. A paragraph
-                                        describing a feature will be enough. Keep you user engaged! </p>
+                                        class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-600">
+                                        <i class="fas fa-handshake"></i> </div>
+                                    <h6 class="text-xl font-semibold">Partnerships</h6>
+                                    <p class="mt-2 mb-4 text-gray-600"> Amber Donors signs MoU with AABB (American Association of Blood Banks). </p>
                                 </div>
                             </div>
                         </div>
@@ -186,7 +183,7 @@
                     </svg> </div>
                 <div class="container mx-auto px-4">
                     <div class="items-center flex flex-wrap">
-                        <div class="lg:w-3/12 md:w-4/12 ml-auto mr-auto px-4"> <img alt="..."
+                        <div class="lg:w-3/12 md:w-5/12 ml-auto mb-8 mr-auto px-4"> <img alt="..."
                                 class="max-w-full rounded-lg shadow-lg" src="https://images.pexels.com/photos/5998474/pexels-photo-5998474.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" /> </div>
                         <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
                             <div class="md:pr-12">
@@ -271,7 +268,7 @@
                     </svg> </div>
                 <div class="container mx-auto px-4 lg:pt-24 lg:pb-64">
                     <div class="flex flex-wrap text-center justify-center">
-                        <div class="w-full lg:w-6/12 px-4">
+                        <div class="w-full lg:w-8/12 px-4">
                             <h2 class="text-4xl font-semibold text-white">Contact Us</h2>
                             <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500"> Put the potentially record low
                                 maximum sea ice extent tihs year down to low ice. According to the National Oceanic and
