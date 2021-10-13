@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RegisteredRecipient;
 use Illuminate\Http\Request;
 use App\Models\Recipient;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class RecipientController extends Controller
 {
     public function index(){
-        return view('dash.patient');
+        return view('dash.recipient');
     }
 
     public function register()
@@ -24,30 +26,36 @@ class RecipientController extends Controller
 
         $validatedData = $request->validate([
             'recipient_name' => 'required',
-            'blood_type' => 'required',
-            'dob' => 'required',
-            'recipient_address' => 'required',
+            'carrier_name' => 'required',
+            'company_name' => 'required',
+            'company_email' => 'required|unique:recipients,company_email',
+            'company_address' => 'required',
             'city' => 'required',
             'parish' => 'required',
-            'recipient_email' => 'required|unique:recipients,recipient_email',
-            'recipient_phoneno' => 'required',
+            'blood_type' => 'required',
+            'company_phoneno' => 'required',
 
         ]);
 
-        $recipient = new recipient();
+        Recipient::create([
+            'recipient_name' => $request->recipient_name,
+            'carrier_name' => $request->carrier_name,
+            'company_name' => $request->company_name,
+            'company_email' => $request->company_email,
+        'company_address' => $request->company_address,
+        'city' => $request->city,
+        'parish' => $request->parish,
+        'blood_type' => $request->blood_type,
+        'company_phoneno' => $request->company_phoneno,
+        'user_id' => Auth::id(),
+        ]);
+        
 
-        $recipient->recipient_name = $request->recipient_name;
-        $recipient->blood_type = $request->blood_type;
-        $recipient->dob = $request->dob;
-        $recipient->recipient_address = $request->recipient_address;
-        $recipient->city = $request->city;
-        $recipient->parish = $request->parish;
-        $recipient->recipient_email = $request->recipient_email;
-        $recipient->recipient_phoneno = $request->recipient_phoneno;
-        $recipient->user_id = Auth::id();
+        User::where('id', Auth::id())->update([
+            'user_type' => 'Recipient',
+        ]);
 
-        $recipient->save();
-
+          Mail::to($request->recipient_email)->send(new RegisteredRecipient());
         return redirect('/');
     }
 }

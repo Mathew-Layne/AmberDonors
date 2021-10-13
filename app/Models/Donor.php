@@ -18,6 +18,7 @@ class Donor extends Model
         'parish',
         'donor_phoneno',
         'profile_pic',
+        'status',
         'user_id',
     ];
 

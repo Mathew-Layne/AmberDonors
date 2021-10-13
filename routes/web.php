@@ -40,7 +40,7 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::get('dashboard/admin', [AdminController::class, 'index'])->middleware('admin');
     Route::get('dashboard/admin/donor', [AdminController::class, 'donor'])->middleware('admin');
-    Route::get('dashboard/admin/patient', [AdminController::class, 'patient'])->middleware('admin');
+    Route::get('dashboard/admin/recipient', [AdminController::class, 'recipient'])->middleware('admin');
     Route::get('dashboard/admin/donations', [AdminController::class, 'donations'])->middleware('admin');
     Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request'])->middleware('admin');
     Route::get('dashboard/admin/request_history', [AdminController::class, 'request_history'])->middleware('admin');
@@ -59,19 +59,19 @@ Route::group(['middleware'=>'auth'], function(){
 
 });
 
+// Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
+// Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');
 
 
 
+Route::get('/dashboard/admin/onApprove/{id}',[UpdateController::class, 'onApprove'])->name('donor-approved');
+Route::get('/dashboard/admin/onReject/{id}',[UpdateController::class, 'onReject'])->name('donor-rejected');
 
 
-
-   
-
+// Route::post('/dashboard/admin/approve{id}',[UpdateController::class, 'onApprove'])->name('onapproved-donor');
 
 
+Route::get('/dashboard/admin/approve/{id}',[UpdateController::class, 'approve'])->name('recipient-approved');
+Route::get('/dashboard/admin/reject/{id}',[UpdateController::class, 'reject'])->name('recipient-rejected');
 
-// Route::get('dashboard/admin/test', [AdminController::class, 'test']);
 
-
-Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
-Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');

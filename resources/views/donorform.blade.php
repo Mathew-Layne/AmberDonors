@@ -40,7 +40,7 @@
               <div class="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">
                 <div class="flex flex-col">
                   <label class="leading-loose">Enter Name</label>
-                  <input type="text" value="{{ Auth::user()->name }}" name="donor_name"
+                  <input readonly type="text" value="{{ Auth::user()->name }}" name="donor_name"
                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                 @error('donor_name')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                   </div>
