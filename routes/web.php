@@ -68,27 +68,8 @@ Route::group(['middleware'=>'auth'], function(){
 
 });
 
-<<<<<<< HEAD
-// Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
-// Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');
-
-
-
-Route::get('/dashboard/admin/onApprove/{id}',[UpdateController::class, 'onApprove'])->name('donor-approved');
-Route::get('/dashboard/admin/onReject/{id}',[UpdateController::class, 'onReject'])->name('donor-rejected');
-
-
-// Route::post('/dashboard/admin/approve{id}',[UpdateController::class, 'onApprove'])->name('onapproved-donor');
-
-
-Route::get('/dashboard/admin/approve/{id}',[UpdateController::class, 'approve'])->name('recipient-approved');
-Route::get('/dashboard/admin/reject/{id}',[UpdateController::class, 'reject'])->name('recipient-rejected');
-
-
-=======
 // Route::get('dashboard/admin/test', [AdminController::class, 'test']);
 
 
 Route::get('/edit/{id}', [UpdateController::class, 'update'])->name('update-profile');
 Route::post('/edit', [UpdateController::class, 'onUpdate'])->name('onupdate-profile');
->>>>>>> 3e58c5c0cbc8b27c1952158b88ad2e2c50fa38da

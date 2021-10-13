@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 
 use App\Mail\RegisteredDonor;
+use App\Models\BloodDonation;
 use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class DonorController extends Controller
 {
+  
   public function index()
   {
     session()->put('donor', 'profile');
@@ -80,13 +83,32 @@ class DonorController extends Controller
     return view('dash.donor');
   }
 
-  public function storeBlood(){
-    //
+  public function storeBlood(Request $request){
+    date_default_timezone_set('Jamaica');
+
+    $valid = $request->validate([
+      'units' => 'required',
+    ]);
+
+    $donor = Donor::where('user_id', Auth::id())->first();
+
+    $donate = new BloodDonation();
+    $donate->donor_id = $donor->id;
+    $donate->date_donated = now();
+    $donate->blood_quantity = $request->units;
+    $donate ->save();
+
+    return redirect('dashboard/donor');
   }
 
   public function donationHistory(){
     session()->put('donor', 'donationhistory');
-    
-    return view('dash.donor');
+    $donor = Donor::where('user_id', Auth::id())->first();
+
+    $donations = DB::table('blood_donations')
+    ->join('donors', 'blood_donations.donor_id', 'donor.id')
+    ->where('donor_id', $donor->id)
+    ->get();
+    return view('dash.donor', compact('donations'));
   }
 }
