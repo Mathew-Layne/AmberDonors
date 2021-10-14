@@ -270,9 +270,8 @@
                     <div class="flex flex-wrap text-center justify-center">
                         <div class="w-full lg:w-8/12 px-4">
                             <h2 class="text-4xl font-semibold text-white">Contact Us</h2>
-                            <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500"> Put the potentially record low
-                                maximum sea ice extent tihs year down to low ice. According to the National Oceanic and
-                                Atmospheric Administration, Ted, Scambos. </p>
+                            <p class="text-lg leading-relaxed mt-4 mb-4 text-gray-500"> To give real service you must add something
+                                 which cannot be bought or measured with money, and that is sincerity and integrity. </p>
                         </div>
                     </div>                    
                 </div>
