@@ -78,6 +78,10 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('register/recipient', [RecipientController::class, 'register']);
     Route::post('register/recipient', [RecipientController::class, 'store']);
 
+    Route::get('dashboard/recipient/delete/{id}', [UpdateController::class, 'destroyRecipient'])->middleware('recipient');
+    Route::get('dashboard/recipient/edit/{id}', [UpdateController::class, 'editRecipient'])->middleware('recipient');
+
+
 });
 
 
