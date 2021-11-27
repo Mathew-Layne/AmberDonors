@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Mail\RegisteredRecipient;
+use App\Models\BloodType;
 use Illuminate\Http\Request;
 use App\Models\Recipient;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -20,8 +22,8 @@ class RecipientController extends Controller
 
     public function register()
     {
-     
-        return view('recipientform');
+       $blood_type = BloodType::all();
+        return view('recipientform', compact('blood_type'));
     }
 
     public function store(Request $request)
