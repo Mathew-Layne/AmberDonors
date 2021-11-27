@@ -16,7 +16,7 @@ class CreateDonorsTable extends Migration
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
             $table->string('donor_name');
-            $table->string('blood_type');
+            $table->foreignId('blood_type_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('dob');
             $table->string('donor_address');
             $table->string('city');

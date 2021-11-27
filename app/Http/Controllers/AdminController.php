@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function donor() {
         session()->put('admin', 'donor');
-        $donors = Donor::where('status', 'Pending')->get();  
+        $donors = Donor::get();  
         return view('dash.admin', compact('donors'));
     }
 
