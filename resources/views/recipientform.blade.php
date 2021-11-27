@@ -27,7 +27,7 @@
                         <div class="h-14 w-14 bg-red-600 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl font-mono">
                             <i class="fas fa-heartbeat"></i></div>
                         <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
-                            <h2 class="leading-relaxed">Recipient Registration</h2>
+                            <h2 class="leading-relaxed">Hospital Registration</h2>
                             <p class="text-sm text-gray-500 font-normal leading-relaxed">Please fill out the form below</p>
                         </div>
                     </div>
