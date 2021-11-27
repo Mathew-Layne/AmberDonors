@@ -12,7 +12,7 @@ class UpdateController extends Controller
     public function update(Request $request) {
         $donor = User::find($request->id);
 
-        return view('donorform_update',['donor' => $donor]);
+        return view('update',['donor' => $donor]);
     }
 
     public function onUpdate(Request $request) {
@@ -21,7 +21,7 @@ class UpdateController extends Controller
                         'donor_email' => $request->donor_email,
                         'donor_address' => $request->donor_address,
                         'city' => $request->city,
-                        'paroish' => $request->parrish,
+                        'parish' => $request->parrish,
                         'donor_phoneno' => $request->donor_phoneno,
             
         ]);

@@ -32,8 +32,8 @@
                             Become a Donors</a> </li>
                     <li class="flex items-center"> <a
                             class=" lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                            href="https://www.facebook.com"><span
-                                class="inline-block ml-2">Search Blood</span></a> </li>
+                            href="{{ url('register/recipient') }}"><span
+                                class="inline-block ml-2">Request Blood</span></a> </li>
                     <li class="flex items-center"> <a
                             class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                             href="https://twitter.com/abhinav"><span

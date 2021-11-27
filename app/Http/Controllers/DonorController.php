@@ -67,7 +67,21 @@ class DonorController extends Controller
   }
 
   public function editDonor($id){
+    $donor = Donor::find($id);
+    return view('update',compact('donor',$donor));
+  }
 
+  public function updateDonor(Request $request){
+     Donor::where('id', $request->id)->update([
+      'donor_name' => $request->donor_name,
+      'donor_address' => $request->donor_address, 
+      'city' => $request->city,
+      'parish' => $request->parish,
+      'donor_email' => $request->donor_email,
+      'donor_phoneno' => $request->donor_phoneno,
+       ]);
+
+        return redirect('dashboard/donor');
   }
 
   public function destroyDonor($id){

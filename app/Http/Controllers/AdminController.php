@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index() {
         session()->put('admin', 'home');
-
+        
         return view('dash.admin');
     }
 

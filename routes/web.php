@@ -36,7 +36,7 @@ require __DIR__.'/auth.php';
 Route::group(['middleware'=>'auth'], function(){
 
     
-    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ADMIN SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ADMIN SECTION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
     Route::get('dashboard/admin', [AdminController::class, 'index'])->middleware('admin');
     Route::get('dashboard/admin/donor', [AdminController::class, 'donor'])->middleware('admin');
@@ -57,7 +57,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/dashboard/admin/reject/{id}', [UpdateController::class, 'reject'])
     ->name('recipient-rejected')->middleware('admin');
 
-    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\DONOR SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\DONOR SECTION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
     Route::get('donor/register', [DonorController::class, 'register']);
     Route::post('donor/register', [DonorController::class, 'store']);
@@ -70,9 +70,11 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/dashboard/donor/donation/history', [DonorController::class, 'donationHistory'])->middleware('donor');
 
     Route::get('dashboard/donor/delete/{id}', [DonorController::class, 'destroyDonor'])->middleware('donor');
-    Route::get('dashboard/donor/edit/{id}', [DonorController::class, 'editDornor'])->middleware('donor');
+    Route::get('dashboard/donor/edit/{id}', [DonorController::class, 'editdonor'])->middleware('donor');
+    Route::post('dashboard/donor/edit', [DonorController::class, 'updateDonor'])->name('donor-onUpdate')->middleware('donor');
 
-    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECCSION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+    /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECTION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
     Route::get('dashboard/recipient', [RecipientController::class, 'index']);
     Route::get('register/recipient', [RecipientController::class, 'register']);
