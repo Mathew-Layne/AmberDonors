@@ -80,6 +80,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('register/recipient', [HospitalController::class, 'register']);
     Route::post('register/recipient', [HospitalController::class, 'store']);
 
+    Route::get('dashboard/recipient/bloodRequest', [HospitalController::class, 'bloodRequest'])->name('hospitalRequest');
+
+    Route::post('dashboard/recipient/bloodRequest', [HospitalController::class, 'storeRequest'])->name('storeRequest');
+
+    Route::get('dashboard/recipient/pendingRequest', [HospitalController::class, 'pendingRequest'])->name('pendingRequest');
+    Route::get('dashboard/recipient/requestHistory', [HospitalController::class, 'allRequests'])->name('requestHistory');
+
+
     Route::get('dashboard/recipient/delete/{id}', [UpdateController::class, 'destroyRecipient'])->middleware('recipient');
     Route::get('dashboard/recipient/edit/{id}', [UpdateController::class, 'editRecipient'])->middleware('recipient');
 

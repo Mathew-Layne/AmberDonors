@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BloodDonation;
+use App\Models\BloodTransaction;
 use Illuminate\Http\Request;
 use App\Models\Donor;
+use App\Models\Hospital;
 use App\Models\Recipient;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +26,7 @@ class AdminController extends Controller
 
     public function recipient() {
         session()->put('admin', 'recipient');
-        $recipients = Recipient::where('status', 'Pending')->get();
+        $recipients = Hospital::all();
         return view('dash.admin', compact('recipients'));
     }
 

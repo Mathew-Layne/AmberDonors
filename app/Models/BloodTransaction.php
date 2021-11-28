@@ -16,4 +16,8 @@ class BloodTransaction extends Model
     public function bloodType(){
         return $this->belongsTo(BloodType::class);
     }
+
+    protected $fillable = [
+        'hospital_id', 'date_requested', 'quantity', 'blood_type_id', 'status'
+    ];
 }
