@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
-    <title>Recipient Form</title>
+    <title>Hospital Form</title>
 
 
 </head>
@@ -64,9 +64,9 @@
                                 </div>
 
                                 <div class="flex flex-col">
-                                    <label class="leading-loose">Institution's Street Address</label>
-                                    <input type="text" placeholder="72 Cherry Street" name="company_address" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-                                    @error('company_address')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                    <label class="leading-loose">Hospital Street Address</label>
+                                    <input type="text" placeholder="72 Cherry Street" name="hospital_address" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                    @error('hospital_address')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                                 </div>
 
                                 <div class="flex items-center space-x-4">
@@ -102,7 +102,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex flex-col">
+                                {{-- <div class="flex flex-col">
                                     <label class="leading-loose">Blood Type Requested</label>
                                     <select name="blood_type" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                                         <option value="">Choose Blood Type</option>
@@ -113,15 +113,15 @@
                                         @endforelse
                                     </select>
                                     @error('blood_type')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
-                                </div>
+                                </div> --}}
 
                                 <div class="flex flex-col ">
                                     <div class="flex flex-col">
                                         <label class="leading-loose">Institution Phone Number</label>
                                         <div class="relative focus-within:text-gray-600 text-gray-400">
-                                            <input type="number" placeholder="Enter Phone Number" name="company_phoneno" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                            <input type="number" placeholder="Enter Phone Number" name="hospital_phoneno" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                                         </div>
-                                        @error('company_phoneno')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                        @error('hospital_phoneno')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                                     </div>
 
                                 </div>
