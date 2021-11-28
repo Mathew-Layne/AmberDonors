@@ -184,7 +184,7 @@
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                                         class="inline-block w-1/3 md:hidden font-bold">Full Name</span>{{ $donor->donor_name }}</td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                                        class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $donor->blood_type }}</td>
+                                                        class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $donor->bloodType->type_name }}</td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                                         class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donor->dob }}</td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
