@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonorController;
-use App\Http\Controllers\RecipientController;
+use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\UpdateController;
 use Illuminate\Support\Facades\Route;
 
@@ -76,9 +76,9 @@ Route::group(['middleware'=>'auth'], function(){
 
     /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECTION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
-    Route::get('dashboard/recipient', [RecipientController::class, 'index']);
-    Route::get('register/recipient', [RecipientController::class, 'register']);
-    Route::post('register/recipient', [RecipientController::class, 'store']);
+    Route::get('dashboard/recipient', [HospitalController::class, 'index'])->name('recipient');
+    Route::get('register/recipient', [HospitalController::class, 'register']);
+    Route::post('register/recipient', [HospitalController::class, 'store']);
 
     Route::get('dashboard/recipient/delete/{id}', [UpdateController::class, 'destroyRecipient'])->middleware('recipient');
     Route::get('dashboard/recipient/edit/{id}', [UpdateController::class, 'editRecipient'])->middleware('recipient');

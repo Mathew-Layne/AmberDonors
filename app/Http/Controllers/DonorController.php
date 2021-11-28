@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\RegisteredDonor;
 use App\Models\BloodDonation;
+use App\Models\BloodType;
 use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class DonorController extends Controller
 
   public function register()
   {
+  
     return view('donorform');
   }
 

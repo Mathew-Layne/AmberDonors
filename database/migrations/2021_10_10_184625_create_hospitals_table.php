@@ -15,6 +15,7 @@ class CreateHospitalsTable extends Migration
     {
         Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate(('cascade'));
             $table->string('hospital_name');
             $table->string('hospital_address');
             $table->string('hospital_city');
