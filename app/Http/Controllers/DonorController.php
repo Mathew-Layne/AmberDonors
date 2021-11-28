@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\RegisteredDonor;
 use App\Models\BloodDonation;
+use App\Models\BloodType;
 use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,8 +25,8 @@ class DonorController extends Controller
   }
 
   public function register()
-  {
-    return view('donorform');
+  {    
+    return view('donorform', ['blood_type' => BloodType::all(),]);
   }
 
 
@@ -48,7 +49,7 @@ class DonorController extends Controller
     $donor = new Donor();
 
     $donor->donor_name = $request->donor_name;
-    $donor->blood_type = $request->blood_type;
+    $donor->blood_type_id = $request->blood_type;
     $donor->dob = $request->dob;
     $donor->donor_address = $request->donor_address;
     $donor->city = $request->city;

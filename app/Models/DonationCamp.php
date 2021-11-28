@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class DonationCamp extends Model
 {
     use HasFactory;
+
+    public function donation(){
+        return $this->hasMany(BloodDonation::class);
+    }
 }

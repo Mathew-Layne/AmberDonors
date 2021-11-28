@@ -97,14 +97,9 @@
                   <select name="blood_type"
                     class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                     <option value="">Choose Blood Type</option>
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
+                    @foreach($blood_type as $blood)                
+                      <option value="{{ $blood->id }}">{{ $blood->type_name }}</option>
+                    @endforeach
                   </select>
                   @error('blood_type')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                 </div>
