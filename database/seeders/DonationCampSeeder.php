@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\DonationCamp;
 use Illuminate\Database\Seeder;
 
 class DonationCampSeeder extends Seeder
@@ -13,6 +14,6 @@ class DonationCampSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DonationCamp::factory(5)->create();
     }
 }

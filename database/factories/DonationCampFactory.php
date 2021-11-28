@@ -22,7 +22,10 @@ class DonationCampFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'branch_name' => $this->faker->company(),
+            'branch_address' => $this->faker->address(),
+            'branch_phoneNo' => $this->faker->phoneNumber(),
+            'opening_hours' => $this->faker->randomElements($array = ['Mon-Fri: 8:00am-4:00pm', 'Friday: 10:00am-2:30pm', 'Saturdays ONLY: 9:00am-3:00pm', 'Fri: 8:00am-2:00pm', 'Mon-Fri: 8:30am-3:00pm'], $count = 1, $allowDuplicates = false)
         ];
     }
 }
