@@ -76,7 +76,7 @@ Route::group(['middleware'=>'auth'], function(){
 
     /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\RECIPIENT SECTION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
-    Route::get('dashboard/recipient', [HospitalController::class, 'index'])->name('recipient');
+    Route::get('dashboard/recipient', [HospitalController::class, 'index'])->name('hospitalDashboard');
     Route::get('register/recipient', [HospitalController::class, 'register']);
     Route::post('register/recipient', [HospitalController::class, 'store']);
 
