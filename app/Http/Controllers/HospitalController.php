@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodStock;
 use App\Models\BloodTransaction;
 use App\Models\BloodType;
 use App\Models\Hospital;
@@ -58,14 +59,27 @@ class HospitalController extends Controller
             'blood_type_id' => 'required',
         ]);
 
+        $bloodAvail = BloodStock::where('blood_type_id', $request->blood_type_id)->sum('total_quantity');
+        
+        // dd($bloodAvail);
+
+        if($bloodAvail <= $request->blood_quantity){
+        
+            return redirect()->back()->with('status', 'Request Exceeds Availability');
+        
+        }else
+        {
+
         BloodTransaction::create([
             'hospital_id' => $request->hospital_id,
             'date_requested' => now(),
             'quantity' =>$request->blood_quantity,
             'blood_type_id' => $request->blood_type_id,
         ]);
+            return redirect()->route('pendingRequest');
+    }
 
-        return redirect()->route('pendingRequest');
+        
     }
 
     public function pendingRequest(){
