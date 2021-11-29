@@ -14,6 +14,6 @@ class BloodStock extends Model
     }
 
     protected $fillable = [
-        'blood_type_id', 'total_quantity',
+        'blood_type_id', 'total_quantity', 'donation_camp_id',
     ];
 }
