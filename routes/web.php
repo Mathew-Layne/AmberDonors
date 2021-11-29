@@ -30,6 +30,7 @@ Route::view('/dashboard', 'dashboard')
 
 require __DIR__.'/auth.php';
 
+Route::view('/bloodsearch', 'bloodsearch');
 
 
 

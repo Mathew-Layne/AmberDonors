@@ -136,7 +136,7 @@
                                         </div>
     
                                         <div class="mx-5">
-                                            <h4 class="text-2xl font-semibold text-gray-700">1</h4>
+                                            <h4 class="text-2xl font-semibold text-gray-700">{{ $donationCount }}</h4>
                                             <div class="text-gray-500">Totat Donation</div>
                                         </div>
                                     </div>
@@ -239,6 +239,19 @@
                                         @csrf
                                         <div class="divide-y divide-gray-200">
                                             <div class="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">
+
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Donation Camp</label>
+                                                    <select type="number" name="camp"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                        <option value="">Selece Donation Camp</option>
+                                                        @foreach($camps as $camp)
+                                                            <option value="{{ $camp->id }}">{{ $camp->branch_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('camp')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+
                                                 <div class="flex flex-col">
                                                     <label class="leading-loose">Units (in ml)</label>
                                                     <input type="number" placeholder="Enter Unit of Donated Blood" name="units"
@@ -298,6 +311,8 @@
                                                 <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                                                     Units (in ml)</th>
                                                 <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                    Donation Camp</th>
+                                                <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
                                                     Donation Date</th>
                                                                                             
                                             </tr>
@@ -307,21 +322,24 @@
                                             <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                                         class="inline-block w-1/3 md:hidden font-bold">Full
-                                                        Name</span>{{ $donation->donor_name }}</td>
+                                                        Name</span>{{ $donation->donor->donor_name }}</td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                                         class="inline-block w-1/3 md:hidden font-bold">Blood
-                                                        Type</span>{{ $donation->blood_type }}</td>
+                                                        Type</span>{{ $donation->donor->bloodType->type_name }}</td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                                        class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donation->dob }}</td>
+                                                        class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donation->donor->dob }}</td>
                                                 
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                                        class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donation->donor_email }}
+                                                        class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donation->donor->donor_email }}
                                                 </td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
-                                                        class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donation->donor_phoneno }}
+                                                        class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donation->donor->donor_phoneno }}
                                                 </td> 
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                                         class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donation->blood_quantity }}
+                                                </td>
+                                                <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                        class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donation->camp->branch_name }}
                                                 </td>
                                                 <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
                                                         class="inline-block w-1/3 md:hidden font-bold">City</span>{{ $donation->date_donated }}</td>                                                                                             

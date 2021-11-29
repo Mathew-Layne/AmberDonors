@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Mail\RegisteredDonor;
 use App\Models\BloodDonation;
 use App\Models\BloodType;
+use App\Models\DonationCamp;
 use App\Models\Donor;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,7 +22,9 @@ class DonorController extends Controller
     session()->put('donor', 'profile');
 
     $donors = Donor::where('user_id', Auth::id())->get();
-    return view('dash.donor', compact('donors'));
+    $donationCount = BloodDonation::where('donor_id', Auth::id())->count();
+    
+    return view('dash.donor', compact('donors', 'donationCount'));
   }
 
   public function register()
@@ -95,7 +98,7 @@ class DonorController extends Controller
   public function getBlood(){
     session()->put('donor', 'donateblood');
 
-    return view('dash.donor');
+    return view('dash.donor', ['camps' => DonationCamp::all()]);
   }
 
   public function storeBlood(Request $request){
@@ -103,6 +106,8 @@ class DonorController extends Controller
 
     $valid = $request->validate([
       'units' => 'required',
+      'camp' => 'required',
+
     ]);
 
     $donor = Donor::where('user_id', Auth::id())->first();
@@ -111,6 +116,7 @@ class DonorController extends Controller
     $donate->donor_id = $donor->id;
     $donate->date_donated = now();
     $donate->blood_quantity = $request->units;
+    $donate->donation_camp_id = $request->camp;
     $donate ->save();
 
     return redirect('dashboard/donor');
@@ -118,12 +124,11 @@ class DonorController extends Controller
 
   public function donationHistory(){
     session()->put('donor', 'donationhistory');
-    $donor = Donor::where('user_id', Auth::id())->first();
 
-    $donations = DB::table('blood_donations')
-    ->join('donors', 'blood_donations.donor_id', 'donors.id')
-    ->where('donor_id', $donor->id)
+    $donations = BloodDonation::where('donor_id', Auth::id())
+    ->with('camp')
     ->get();
+
     return view('dash.donor', compact('donations'));
   }
 }

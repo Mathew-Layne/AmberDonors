@@ -14,6 +14,6 @@ class BloodDonation extends Model
     }
 
     public function camp(){
-        return $this->belongsTo(DonationCamp::class);
+        return $this->belongsTo(DonationCamp::class, 'donation_camp_id');
     }
 }
