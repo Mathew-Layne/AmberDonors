@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class BloodStock extends Model
 {
     use HasFactory;
+
+    public function bloodType(){
+        return $this->belongsTo(BloodType::class);
+    }
 }
