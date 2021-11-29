@@ -263,7 +263,7 @@
 
                     <div class="text-gray-700 text-3xl font-medium"><h3>Hospital</h3></div>
 
-                    <div class="md:px-32 py-8">
+                    <div class="py-8">
                         <div class="shadow overflow-hidden rounded border-b border-gray-200">
                             <table class="min-w-full border-collapse block md:table">
                                 <thead class="block md:table-header-group">
