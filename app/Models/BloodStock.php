@@ -12,4 +12,8 @@ class BloodStock extends Model
     public function bloodType(){
         return $this->belongsTo(BloodType::class);
     }
+
+    protected $fillable = [
+        'blood_type_id', 'total_quantity',
+    ];
 }

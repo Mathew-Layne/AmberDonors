@@ -136,11 +136,9 @@ class DonorController extends Controller
     } else {
       BloodStock::create([
         'blood_type_id' => $donor->blood_type_id,
-        'total_quantity' => $quantity + $request->units,
+        'total_quantity' => $request->units,
       ]);
     }
-
-    
 
     return redirect()->back();
 
