@@ -194,6 +194,8 @@
                                         <div class="mx-1">
                                             <h4 class="text-xl font-semibold text-gray-700">Blood Type</h4>
                                             <div class="font-bold text-lg text-center text-red-600">A+</div>
+
+
                                         </div>
                                     </div>
                                 </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BloodDonation;
 use App\Models\BloodTransaction;
+use App\Models\BloodType;
 use Illuminate\Http\Request;
 use App\Models\Donor;
 use App\Models\Hospital;
@@ -14,9 +15,14 @@ class AdminController extends Controller
 {
     public function index() {
         session()->put('admin', 'home');
+        $count = 0;
+        $info = BloodDonation::all();
         
-        return view('dash.admin');
+        }
+        return view('dash.admin'));
     }
+       
+    
 
     public function donor() {
         session()->put('admin', 'donor');
