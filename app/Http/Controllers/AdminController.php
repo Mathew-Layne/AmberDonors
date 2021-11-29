@@ -20,7 +20,7 @@ class AdminController extends Controller
         
         }
         return view('dash.admin'));
-    }
+    
        
     
 
