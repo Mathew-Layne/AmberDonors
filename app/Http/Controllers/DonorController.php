@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\RegisteredDonor;
 use App\Models\BloodDonation;
+use App\Models\BloodStock;
 use App\Models\BloodType;
 use App\Models\DonationCamp;
 use App\Models\Donor;
@@ -110,7 +111,7 @@ class DonorController extends Controller
 
     ]);
 
-    $donor = Donor::where('user_id', Auth::id())->first();
+    $donor = Donor::where('user_id', Auth::id())->first();    
 
     $donate = new BloodDonation();
     $donate->donor_id = $donor->id;
@@ -119,7 +120,11 @@ class DonorController extends Controller
     $donate->donation_camp_id = $request->camp;
     $donate ->save();
 
-    return redirect('dashboard/donor');
+    
+
+    return redirect()->back();
+
+    // return redirect()->action([BloodDonationController::class, 'index']);
   }
 
   public function donationHistory(){
