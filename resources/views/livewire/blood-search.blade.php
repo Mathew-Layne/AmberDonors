@@ -5,6 +5,8 @@
             <h3>Blood Search</h3>
         </div>
 
+        
+
         <div class="md:px-2 py-8">
             <div class="shadow overflow-hidden rounded border-b border-gray-200">
                 <table class="min-w-full border-collapse block md:table">

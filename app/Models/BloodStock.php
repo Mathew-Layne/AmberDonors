@@ -9,11 +9,13 @@ class BloodStock extends Model
 {
     use HasFactory;
 
-    public function bloodType(){
-        return $this->belongsTo(BloodType::class);
-    }
+    
 
     protected $fillable = [
         'blood_type_id', 'total_quantity',
     ];
+
+    public function bloodType(){
+        return $this->belongsTo(BloodType::class);
+    }
 }
