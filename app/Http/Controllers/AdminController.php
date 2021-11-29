@@ -42,14 +42,29 @@ class AdminController extends Controller
 
     public function blood_request() {
         session()->put('admin', 'blood_request');
-        
-        return view('dash.admin');
+        $transactions = BloodTransaction::where('status', 'pending')->get();
+        return view('dash.admin', compact('transactions'));
+    }
+
+    public function approveRequest($id){
+        BloodTransaction::where('id', $id)->update([
+            'status' => 'Approved',
+        ]);
+        return redirect()->route('bloodRequest');
+    }
+
+    public function rejectRequest($id)
+    {
+        BloodTransaction::where('id', $id)->update([
+            'status' => 'Rejected',
+        ]);
+        return redirect()->route('bloodRequest');
     }
 
     public function request_history() {
         session()->put('admin', 'request_history');
-        
-        return view('dash.admin');
+        $requests = BloodTransaction::where('status','!=', 'pending')->get();
+        return view('dash.admin', compact('requests'));
     }
 
     public function test() {

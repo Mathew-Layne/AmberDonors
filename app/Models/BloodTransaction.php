@@ -9,7 +9,7 @@ class BloodTransaction extends Model
 {
     use HasFactory;
 
-    public function haspital(){
+    public function hospital(){
         return $this->belongsTo(Hospital::class);
     }
 
