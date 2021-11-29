@@ -17,9 +17,9 @@ class AdminController extends Controller
         session()->put('admin', 'home');
         $count = 0;
         $info = BloodDonation::all();
-        
+        return view('dash.admin');
         }
-        return view('dash.admin'));
+        
     
        
     
