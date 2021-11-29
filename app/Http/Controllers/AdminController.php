@@ -56,6 +56,7 @@ class AdminController extends Controller
         BloodTransaction::where('id', $id)->update([
             'status' => 'Approved',
         ]);
+
         return redirect()->route('bloodRequest');
     }
 
