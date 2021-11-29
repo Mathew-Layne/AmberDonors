@@ -125,16 +125,18 @@ class DonorController extends Controller
     $donate->donation_camp_id = $request->camp;
     $donate->save();
 
-    $check = BloodStock::where('blood_type_id', $donor->blood_type_id)->count();
+    $check = BloodStock::where('blood_type_id', $donor->blood_type_id)
+    ->where('donation_camp_id', $request->camp)->count();
     
     if ($check == 1) {
       $quantity = BloodStock::where('blood_type_id', $donor->blood_type_id)->value('total_quantity');
 
-      BloodStock::where('blood_type_id', $donor->blood_type_id)->update([
+      BloodStock::where('blood_type_id', $donor->blood_type_id)->where('donation_camp_id', $request->camp)->update([
         'total_quantity' => $quantity + $request->units,
       ]);
     } else {
       BloodStock::create([
+        'donation_camp_id' => $request->camp,
         'blood_type_id' => $donor->blood_type_id,
         'total_quantity' => $request->units,
       ]);

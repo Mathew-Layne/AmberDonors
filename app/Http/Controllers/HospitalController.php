@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodStock;
 use App\Models\BloodTransaction;
 use App\Models\BloodType;
 use App\Models\Hospital;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +14,12 @@ class HospitalController extends Controller
 {
     //
     public function index(){
-        $recipients = Hospital::all();
-        return view('dash.recipient', compact('recipients'));
+        $hospital_id = Hospital::where('user_id', Auth::id())->value('id');
+        // dd($hospital_id);
+            $requestAll = BloodTransaction::where('hospital_id', $hospital_id)->count();
+            $approved = BloodTransaction::where('hospital_id', $hospital_id)->where('status', 'Approved')->count();
+            $rejected= BloodTransaction::where('hospital_id', $hospital_id)->where('status', 'Rejected')->count();
+        return view('recipientdash', compact('requestAll', 'approved', 'rejected'));
     }
 
     public function register(){
@@ -33,7 +39,7 @@ class HospitalController extends Controller
         ]);
 
         Hospital::create([
-            'user_id'=> Auth::user()->id,
+            'user_id'=> Auth::id(),
             'hospital_name' => $request->hospital_name,
             'hospital_address' =>$request->hospital_address,
             'hospital_email' => $request->hospital_email,
@@ -41,6 +47,10 @@ class HospitalController extends Controller
             'hospital_parish' =>$request->parish,
             'personnel_licence_no' => $request->licence_No,
             'hospital_phoneno' => $request->hospital_phoneno,
+        ]);
+
+        User::where('id', Auth::id())->update([
+            'user_type' => 'Recipient'
         ]);
 
         return redirect('dashboard/recipient');
@@ -58,14 +68,27 @@ class HospitalController extends Controller
             'blood_type_id' => 'required',
         ]);
 
+        $bloodAvail = BloodStock::where('blood_type_id', $request->blood_type_id)->sum('total_quantity');
+        
+        // dd($bloodAvail);
+
+        if($bloodAvail <= $request->blood_quantity){
+        
+            return redirect()->back()->with('status', 'Request Exceeds Availability');
+        
+        }else
+        {
+
         BloodTransaction::create([
             'hospital_id' => $request->hospital_id,
             'date_requested' => now(),
             'quantity' =>$request->blood_quantity,
             'blood_type_id' => $request->blood_type_id,
         ]);
+            return redirect()->route('pendingRequest');
+    }
 
-        return redirect()->route('pendingRequest');
+        
     }
 
     public function pendingRequest(){

@@ -244,7 +244,7 @@
                                                     <label class="leading-loose">Donation Camp</label>
                                                     <select type="number" name="camp"
                                                         class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
-                                                        <option value="">Selece Donation Camp</option>
+                                                        <option value="">Select Donation Camp</option>
                                                         @foreach($camps as $camp)
                                                             <option value="{{ $camp->id }}">{{ $camp->branch_name }}</option>
                                                         @endforeach

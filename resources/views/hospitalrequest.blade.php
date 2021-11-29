@@ -13,6 +13,13 @@
                     </div>
                 </div>
 
+                @if (session('status'))
+                <div class="alert alert-success text-red-600">
+                    {{ session('status') }}
+                </div>
+                @endif
+
+
 
                 <form method="POST" action="{{route('storeRequest')}}">
 
