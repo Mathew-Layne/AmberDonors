@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BloodDonation;
+use App\Models\BloodTransaction;
 use Illuminate\Http\Request;
 use App\Models\Donor;
+use App\Models\Hospital;
 use App\Models\Recipient;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +26,7 @@ class AdminController extends Controller
 
     public function recipient() {
         session()->put('admin', 'recipient');
-        $recipients = Recipient::where('status', 'Pending')->get();
+        $recipients = Hospital::all();
         return view('dash.admin', compact('recipients'));
     }
 
@@ -40,14 +42,29 @@ class AdminController extends Controller
 
     public function blood_request() {
         session()->put('admin', 'blood_request');
-        
-        return view('dash.admin');
+        $transactions = BloodTransaction::where('status', 'pending')->get();
+        return view('dash.admin', compact('transactions'));
+    }
+
+    public function approveRequest($id){
+        BloodTransaction::where('id', $id)->update([
+            'status' => 'Approved',
+        ]);
+        return redirect()->route('bloodRequest');
+    }
+
+    public function rejectRequest($id)
+    {
+        BloodTransaction::where('id', $id)->update([
+            'status' => 'Rejected',
+        ]);
+        return redirect()->route('bloodRequest');
     }
 
     public function request_history() {
         session()->put('admin', 'request_history');
-        
-        return view('dash.admin');
+        $requests = BloodTransaction::where('status','!=', 'pending')->get();
+        return view('dash.admin', compact('requests'));
     }
 
     public function test() {

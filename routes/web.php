@@ -39,11 +39,18 @@ Route::group(['middleware'=>'auth'], function(){
     
     /* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ADMIN SECTION\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 
-    Route::get('dashboard/admin', [AdminController::class, 'index'])->middleware('admin');
+    Route::get('dashboard/admin', [AdminController::class, 'index'])->name('admin')->middleware('admin');
     Route::get('dashboard/admin/donor', [AdminController::class, 'donor'])->middleware('admin');
     Route::get('dashboard/admin/recipient', [AdminController::class, 'recipient'])->middleware('admin');
     Route::get('dashboard/admin/donations', [AdminController::class, 'donations'])->middleware('admin');
-    Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request'])->middleware('admin');
+    Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request'])->name('bloodRequest')->middleware('admin');
+
+    Route::get('/dashboard/admin/blood_request/approve/{id}', [AdminController::class, 'approveRequest'])->name('hospitalApprove')->middleware('admin');
+
+    Route::get('dashboard/admin/blood_request/reject/{id}', [AdminController::class, 'rejectRequest'])->name('hospitalReject')->middleware('admin');
+
+
+
     Route::get('dashboard/admin/request_history', [AdminController::class, 'request_history'])->middleware('admin');
 
     Route::get('/dashboard/admin/onApprove/{id}', [UpdateController::class, 'onApprove'])
@@ -80,6 +87,14 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('dashboard/recipient', [HospitalController::class, 'index'])->name('hospitalDashboard');
     Route::get('register/recipient', [HospitalController::class, 'register']);
     Route::post('register/recipient', [HospitalController::class, 'store']);
+
+    Route::get('dashboard/recipient/bloodRequest', [HospitalController::class, 'bloodRequest'])->name('hospitalRequest');
+
+    Route::post('dashboard/recipient/bloodRequest', [HospitalController::class, 'storeRequest'])->name('storeRequest');
+
+    Route::get('dashboard/recipient/pendingRequest', [HospitalController::class, 'pendingRequest'])->name('pendingRequest');
+    Route::get('dashboard/recipient/requestHistory', [HospitalController::class, 'allRequests'])->name('requestHistory');
+
 
     Route::get('dashboard/recipient/delete/{id}', [UpdateController::class, 'destroyRecipient'])->middleware('recipient');
     Route::get('dashboard/recipient/edit/{id}', [UpdateController::class, 'editRecipient'])->middleware('recipient');

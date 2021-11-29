@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodTransaction;
 use App\Models\BloodType;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
@@ -43,5 +44,37 @@ class HospitalController extends Controller
         ]);
 
         return redirect('dashboard/recipient');
+    }
+
+    public function bloodRequest(){
+        $hospital = Hospital::where('user_id', auth()->user()->id)->first();
+        $blood_type = BloodType::all();
+        return view('hospitalrequest', compact('blood_type', 'hospital'));
+    }
+
+    public function storeRequest(Request $request){
+        $this->validate($request,[
+            'blood_quantity' => 'required|numeric',
+            'blood_type_id' => 'required',
+        ]);
+
+        BloodTransaction::create([
+            'hospital_id' => $request->hospital_id,
+            'date_requested' => now(),
+            'quantity' =>$request->blood_quantity,
+            'blood_type_id' => $request->blood_type_id,
+        ]);
+
+        return redirect()->route('pendingRequest');
+    }
+
+    public function pendingRequest(){
+        $request = BloodTransaction::where('status', 'pending')->get();
+        return view('pendingRequest', compact('request'));
+    }
+
+    public function allRequests(){
+        $allRequest = BloodTransaction::where('status', '!=', 'pending')->get();
+        return view('allRequests', compact('allRequest'));
     }
 }
