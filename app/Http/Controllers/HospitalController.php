@@ -34,8 +34,8 @@ class HospitalController extends Controller
             'hospital_name' => 'required|string',
             'hospital_email' =>'required|email',
             'hospital_address' => 'required|string',
-            'hospital_city' => 'required|string',
-            'hospital_parish' => 'required',
+            'city' => 'required|string',
+            'parish' => 'required',
             'hospital_phoneno' => 'required|numeric'
         ]);
 
