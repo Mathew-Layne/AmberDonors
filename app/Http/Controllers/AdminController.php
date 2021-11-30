@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BloodDonation;
+use App\Models\BloodStock;
 use App\Models\BloodTransaction;
 use App\Models\BloodType;
 use Illuminate\Http\Request;
@@ -57,10 +58,16 @@ class AdminController extends Controller
             'status' => 'Approved',
         ]);
 
-       $transaction =  BloodTransaction::where('id', $id)->get();
+       $transaction =  BloodTransaction::where('id', $id)->first();
+
+       $total_quantity = BloodStock::where('blood_type_id', $transaction->blood_type_id)
+        ->where('donation_camp_id', $transaction->donation_camp_id)->value('total_quantity');
 
         
-        // BloodStock::where('blood_type') 
+        BloodStock::where('blood_type_id', $transaction->blood_type_id) 
+        ->where('donation_camp_id', $transaction->donation_camp_id)->update([
+            'total_quantity' => $total_quantity - $transaction->quantity,
+        ]);
 
         return redirect()->route('bloodRequest');
     }

@@ -18,6 +18,6 @@ class BloodTransaction extends Model
     }
 
     protected $fillable = [
-        'hospital_id', 'date_requested', 'quantity', 'blood_type_id', 'status'
+        'hospital_id', 'date_requested', 'quantity', 'blood_type_id', 'status', 'donation_camp_id'
     ];
 }
