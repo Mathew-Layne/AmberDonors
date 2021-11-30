@@ -239,46 +239,40 @@
                         <div class="mt-8">
 
                         </div>
+                    
+                    @elseif(session()->get('admin') == 'donor')
 
-                        @elseif(session()->get('admin') == 'donor')
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Donor</h3></div>
 
-                        <div class="text-gray-700 text-3xl font-medium">
-                            <h3>Donor</h3>
-                        </div>
+                    <div class="md:px-2 py-8">
+                        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead  class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Full Name</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">D.O.B</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Address</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
 
-                        <div class="md:px-2 py-8">
-                            <div class="shadow overflow-hidden rounded border-b border-gray-200">
-                                <table class="min-w-full border-collapse block md:table">
-                                    <thead class="block md:table-header-group">
-                                        <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Full Name</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">D.O.B</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Address</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">City</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Parish</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    @foreach ($donors as $donor)                                    
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Full Name</span>{{ $donor->donor_name }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $donor->bloodType->type_name }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donor->dob }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donor->donor_address.', '.$donor->city.', '. $donor->parish}}</td>                   
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donor->donor_email }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donor->donor_phoneno }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>{{ $donor->status }}</td>
 
-                                            <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="block md:table-row-group">
-                                        @foreach ($donors as $donor)
-                                        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Full Name</span>{{ $donor->donor_name }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $donor->blood_type }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donor->dob }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donor->donor_address }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">City</span>{{ $donor->city }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Parish</span>{{ $donor->parish }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donor->donor_email }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donor->donor_phoneno }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>{{ $donor->status }}</td>
-
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                                <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
                                                 <a href="{{ route('donor-approved', ['id' => $donor->id]) }}">
                                                     <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded"> Approve</button>
                                                 </a>
@@ -293,6 +287,33 @@
                                 </table>
                             </div>
                         </div>
+                      </div>
+                    
+
+                    @elseif(session()->get('admin') == 'recipient')
+
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Hospital</h3></div>
+
+                    <div class="py-8">
+                        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Personnel Name</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Personnel Licence Number</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Email</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Institution's Address</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Institution's Phone Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    @foreach ($recipients as $recipient)
+                                        <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $recipient->hospital_name }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Personnel Full Name</span>{{$recipient->user->name }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Personnel Licence Number</span>{{$recipient->personnel_licence_no }}</td>
 
 
                         @elseif(session()->get('admin') == 'recipient')
@@ -315,110 +336,55 @@
                                         </tr>
                                     </thead>
                                     <tbody class="block md:table-row-group">
-                                        @foreach ($recipients as $recipient)
-                                        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $recipient->hospital_name }}</td>
-
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Personnel Full Name</span>{{$recipient->user->name }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Personnel Licence Number</span>{{$recipient->personnel_licence_no }}</td>
-
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Email</span>{{$recipient->hospital_email }}</td>
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Address</span>{{$recipient->hospital_address." ".$recipient->hospital_city." ".$recipient->hospital_parish }}</td>
-
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Phone Number</span>{{$recipient->hospital_phoneno }}</td>
-
+                                        @foreach ($donations as $donation)
+                                        <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Full
+                                                    Name</span>{{ $donation->donor->donor_name }}</td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Blood
+                                                    Type</span>{{ $donation->donor->bloodType->type_name }}</td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donation->donor->dob }}</td>
+                
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donation->donor->donor_email }}
+                                            </td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donation->donor->donor_phoneno }}
+                                            </td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donation->blood_quantity }}
+                                            </td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">City</span>{{ $donation->date_donated }}
+                                            </td>
                                         </tr>
                                         @endforeach
 
                                     </tbody>
                                 </table>
+                                {{ $donations->links() }}
                             </div>
                         </div>
 
 
-                        @elseif(session()->get('admin') == 'donations')
+                    <div class="md:px-3 py-8">
+                        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                            <table class="min-w-full border-collapse block md:table">
+                                <thead class="block md:table-header-group">
+                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date of Request</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
 
-                        <div class="container mx-auto px-6 py-8">
-                            <h3 class="text-gray-700 text-3xl font-medium">Donation History</h3>
-
-                            <div class="mt-8">
-
-                            </div>
-
-                            <div class="flex flex-col mt-8">
-                                <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                                    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-
-                                        <table class="min-w-full border-collapse block md:table">
-                                            <thead class="block md:table-header-group">
-                                                <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        Full Name</th>
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        Blood Type</th>
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        D.O.B</th>
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        Email</th>
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        Mobile</th>
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        Units (in ml)</th>
-                                                    <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                                                        Donation Date</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody class="block md:table-row-group">
-                                                @foreach ($donations as $donation)
-                                                <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Full
-                                                            Name</span>{{ $donation->donor_name }}</td>
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood
-                                                            Type</span>{{ $donation->blood_type }}</td>
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donation->dob }}</td>
-
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donation->donor_email }}
-                                                    </td>
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donation->donor_phoneno }}
-                                                    </td>
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donation->blood_quantity }}
-                                                    </td>
-                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">City</span>{{ $donation->date_donated }}
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        @elseif(session()->get('admin') == 'blood_request')
-
-                        <div class="text-gray-700 text-3xl font-medium">
-                            <h3>Blood Request</h3>
-                        </div>
-
-                        <div class="md:px-32 py-8">
-                            <div class="shadow overflow-hidden rounded border-b border-gray-200">
-                                <table class="min-w-full border-collapse block md:table">
-                                    <thead class="block md:table-header-group">
-                                        <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date of Request</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
-
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Units (ml)</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="block md:table-row-group">
-                                        @forelse($transactions as $transaction)
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Units (ml)</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="block md:table-row-group">
+                                    @forelse($transactions as $transaction)
 
                                         <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
                                             <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $transaction->hospital->hospital_name }}</td>
@@ -462,24 +428,21 @@
                             <h3>Blood Request</h3>
                         </div>
 
-                        <div class="md:px-32 py-8">
-                            <div class="shadow overflow-hidden rounded border-b border-gray-200">
-                                <table class="min-w-full border-collapse block md:table">
-                                    <thead class="block md:table-header-group">
-                                        <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date of Request</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
+                      <div class="md:px-3 py-8">
+                          <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                              <table class="min-w-full border-collapse block md:table">
+                                  <thead class="block md:table-header-group">
+                                      <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date of Request</th>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
 
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Units (ml)</th>
-                                            <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="block md:table-row-group">
-                                        @forelse($requests as $transaction)
-
-                                        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $transaction->hospital->hospital_name }}</td>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Units (ml)</th>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="block md:table-row-group">
+                                      @forelse($requests as $transaction)
 
                                             <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Date of Request</span>{{ $transaction->date_requested }}</td>
 
