@@ -28,6 +28,7 @@
               class="h-14 w-14 bg-red-600 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl font-mono">
               <i class="fas fa-tint"></i></div>
             <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+              {{ session('underage') }}
               <h2 class="leading-relaxed">Donor Registration</h2>
               <p class="text-sm text-gray-500 font-normal leading-relaxed">Save a life today by becoming a doner.</p>
             </div>

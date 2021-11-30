@@ -50,6 +50,13 @@ class DonorController extends Controller
 
     ]);
 
+    $current_date = now();
+    $dob = date_create($request->dob);
+
+    if(date_diff($current_date, $dob)->y < 18){
+      return redirect()->back()->with('underage', 'You Must Be 18 Years or Older to Become a Donor');
+    }
+
     $donor = new Donor();
 
     $donor->donor_name = $request->donor_name;
