@@ -22,8 +22,9 @@ class AdminController extends Controller
         $donation = BloodDonation::sum('blood_quantity');
         $request = BloodTransaction::count();
         $unitsRequested = BloodTransaction::sum('quantity');
+        $unitsStock = BloodStock::sum('total_quantity');
         $stocks = BloodStock::all();
-        return view('dash.admin', compact('donor', 'hospital','donation', 'request', 'unitsRequested', 'stocks'));
+        return view('dash.admin', compact('donor', 'hospital','donation', 'request', 'unitsRequested', 'stocks', 'unitsStock'));
         }
         
     public function donor() {

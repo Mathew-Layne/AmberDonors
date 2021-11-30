@@ -255,8 +255,9 @@
 
                                       <div class="mx-5">
                                           <h4 class="text-2xl font-semibold text-gray-700"></h4>
-                                          <div class="text-gray-500">Total Units Donated (ml) </div>
-                                          <strong>{{ $donation }}</strong>
+                                          <div class="text-gray-500">Units in Stock (ml) </div>
+                                          <strong>{{ $unitsStock }}</strong>
+
 
                                       </div>
                                   </div>
