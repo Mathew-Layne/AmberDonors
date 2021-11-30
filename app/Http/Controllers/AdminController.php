@@ -40,9 +40,7 @@ class AdminController extends Controller
     public function donations() {
         session()->put('admin', 'donations');
 
-        $donations = DB::table('blood_donations')
-        ->join('donors', 'blood_donations.donor_id', 'donors.id')        
-        ->get();
+        $donations = BloodDonation::paginate(5);
 
         return view('dash.admin', compact('donations'));
     }
