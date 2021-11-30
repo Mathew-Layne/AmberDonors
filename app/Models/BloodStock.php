@@ -18,4 +18,9 @@ class BloodStock extends Model
     public function bloodType(){
         return $this->belongsTo(BloodType::class);
     }
+
+    public function donationCamp()
+    {
+        return $this->belongsTo(DonationCamp::class);
+    }
 }

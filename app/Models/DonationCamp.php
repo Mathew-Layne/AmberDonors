@@ -12,4 +12,9 @@ class DonationCamp extends Model
     public function donation(){
         return $this->hasMany(BloodDonation::class);
     }
+
+    public function bloodStock()
+    {
+        return $this->hasMany(BloodStock::class);
+    }
 }

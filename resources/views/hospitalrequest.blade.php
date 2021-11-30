@@ -33,6 +33,24 @@
                                 @error('hospital_name')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                             </div>
 
+                             <div class="flex flex-col">
+                                 <label class="leading-loose">Blood Bank</label>
+                                 <div class="relative focus-within:text-gray-600 text-gray-400">
+
+                                     <select name="camp_id" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                         <option value="">Select Blood Bank</option>
+                                         @forelse($bloodBank as $blood)
+                                         <option value="{{ $blood->id }}">{{ $blood->branch_name }}</option>
+                                         @empty
+                                         <option value="">No Records</option>
+                                         @endforelse
+                                     </select>
+
+                                 </div>
+                                 @error('camp_id')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                             </div>
+
+
                             <div class="flex flex-col">
                                 <label class="leading-loose">Quantity (ml)</label>
                                 <input type="number" name="blood_quantity" class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
@@ -57,6 +75,10 @@
                                 </div>
                                 @error('blood_type_id')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
                             </div>
+
+                           
+
+
                         </div>
 
                     </div>
