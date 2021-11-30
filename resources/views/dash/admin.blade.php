@@ -99,6 +99,18 @@
 
                         <span class="mx-3">Request History</span>
                     </a>
+
+                    <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
+                        href="{{ route('bloodcamp') }}">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                            </path>
+                        </svg>
+                    
+                        <span class="mx-3">Blood Camps</span>
+                    </a>
+
                 </nav>
             </div>
             <div class="flex-1 flex flex-col overflow-hidden">
@@ -159,6 +171,7 @@
                 </header>
                 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                     <div class="container mx-auto px-6 py-8">
+
                     @if(session()->get('admin') == 'home')
                     
                         <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
@@ -269,8 +282,70 @@
                             </div>
                         </div>
 
-                        <div class="mt-8">
-                                
+                        <div class="container mx-auto py-8 mt-8">
+                            <h3 class="text-gray-700 text-3xl font-medium">Blood Stock</h3>
+                        
+                            <div class="mt-8">
+                        
+                            </div>
+                        
+                            <div class="flex flex-col mt-8">
+                                <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                                    <div
+                                        class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                        
+                                        <table class="min-w-full border-collapse block md:table">
+                                            <thead class="block md:table-header-group">
+                                                <tr
+                                                    class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Blood Camp</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Address</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Blood Type</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Blood Quantity</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Last Updated</th>                                                   
+                        
+                                                </tr>
+                                            </thead>
+                                            <tbody class="block md:table-row-group">
+                                                @foreach ($stocks as $stock)
+                                                <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Full
+                                                            Name</span>{{ $stock->donationCamp->branch_name }}</td>
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Blood
+                                                            Type</span>{{ $stock->donationCamp->branch_address }}</td>
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $stock->bloodType->type_name
+                                                        }}</td>
+                        
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Email</span>{{
+                                                        $stock->total_quantity }}
+                                                    </td>
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{
+                                                        $stock->updated_at }}
+                                                    </td>
+                                        
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     
                     @elseif(session()->get('admin') == 'donor')
@@ -539,6 +614,88 @@
                           </div>
                       </div>
 
+                      @elseif(session()->get('admin') == 'camp')
+                    
+                    @if(session('donated'))
+                    <div class="py-3 px-5 mb-4 bg-green-100 text-green-900 text-sm rounded-md border border-green-200 flex items-center"
+                        role="alert">
+                        <div class="w-4 mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                            </svg>
+                        </div>
+                        <span><strong>Awesome</strong>{{ session('camp') }}</span>
+                    </div>
+                    @endif
+                    
+                    <div class="min-h-screen  flex flex-col justify-center sm:py-5">
+                    
+                        <div class="lg:w-6/12 sm:w-10/12 mx-auto">
+                            <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-lg sm:p-10">
+                    
+                    
+                    
+                                <div class="max-w-md mx-auto">
+                                    <div class="flex items-center space-x-5">
+                                        <div
+                                            class="h-14 w-14 bg-red-600 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl font-mono">
+                                            <i class="fas fa-tint"></i>
+                                        </div>
+                                        <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+                                            <h2 class="leading-relaxed">Donation Camp</h2>
+                                            <p class="text-sm text-gray-500 font-normal leading-relaxed">Save a life today by becoming a
+                                                doner.</p>
+                                        </div>
+                                    </div>
+                    
+                    
+                                    <form method="POST">
+                                        @csrf
+                                        <div class="divide-y divide-gray-200">
+                                            <div class="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">                                           
+                    
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Branch Name</label>
+                                                    <input type="text" placeholder="Enter Blood Camp Name" name="branch_name"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('branch_name')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+                    
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Branch Address</label>
+                                                    <input type="text" placeholder="Enter Branch Address" name="branch_address"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('branch_address')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Contact Number</label>
+                                                    <input type="number" placeholder="Enter Contact Number" name="branch_number"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('branch_number')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Opening Hours</label>
+                                                    <input type="text" placeholder="Enter Opening Hours" name="hours"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('hours')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="pt-4 flex items-center">
+                                                <button type="submit"
+                                                    class="bg-red-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none font-bold">
+                                                    Add Camp</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                    
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     @endif
 

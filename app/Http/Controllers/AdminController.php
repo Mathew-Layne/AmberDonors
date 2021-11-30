@@ -6,6 +6,7 @@ use App\Models\BloodDonation;
 use App\Models\BloodStock;
 use App\Models\BloodTransaction;
 use App\Models\BloodType;
+use App\Models\DonationCamp;
 use Illuminate\Http\Request;
 use App\Models\Donor;
 use App\Models\Hospital;
@@ -86,9 +87,33 @@ class AdminController extends Controller
         return view('dash.admin', compact('requests'));
     }
 
-    public function test() {
-        
+    public function test() {        
         
         return view('dash.testing');
+    }
+
+    public function camp(){
+        session()->put('admin', 'camp');
+
+        return view('dash.admin');
+    }
+
+    public function storeCamp(Request $request){
+
+        $request->validate([
+            'branch_name' => 'required',
+            'branch_address' => 'required',
+            'branch_number' => 'required',
+            'hours' => 'required',
+        ]);
+
+        $camp = new DonationCamp;
+        $camp->branch_name = $request->branch_name;
+        $camp->branch_address = $request->branch_address;
+        $camp->branch_phoneNo = $request->branch_number;
+        $camp->opening_hours = $request->hours;
+        $camp->save();
+
+        return redirect()->back()->with('camp', 'Donation Camp Successfully Added');
     }
 }
