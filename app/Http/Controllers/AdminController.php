@@ -16,15 +16,16 @@ class AdminController extends Controller
 {
     public function index() {
         session()->put('admin', 'home');
-        $count = 0;
-        $info = BloodDonation::all();
-        return view('dash.admin');
+        
+        $donor = Donor::count();
+        $hospital = Hospital::count();
+        $donation = BloodDonation::sum('blood_quantity');
+        $request = BloodTransaction::count();
+        $unitsRequested = BloodTransaction::sum('quantity');
+        $stocks = BloodStock::all();
+        return view('dash.admin', compact('donor', 'hospital','donation', 'request', 'unitsRequested', 'stocks'));
         }
         
-    
-       
-    
-
     public function donor() {
         session()->put('admin', 'donor');
         $donors = Donor::get();  
