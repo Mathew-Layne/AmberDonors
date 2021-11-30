@@ -149,7 +149,7 @@ class DonorController extends Controller
       ]);
     }
 
-    return redirect()->back();
+    return redirect()->back()->with('donated', 'Blood Donation Was A Success!!');
 
     // return redirect()->action([BloodDonationController::class, 'index']);
   }

@@ -3,11 +3,7 @@
 <div class="container mx-auto px-6 py-8">
     <h3 class="text-gray-700 text-3xl font-medium">Pending Request</h3>
 
-    <div class="mt-8">
-        <button class="bg-red-500 p-4 rounded-md text-white font-semibold"><a href=" {{ route('hospitalRequest') }}">Request Blood</a></button>
-
-
-    </div>
+    
 
     <div class="flex flex-col mt-8">
         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
@@ -54,6 +50,10 @@
 
             </div>
         </div>
+    </div>
+    <div class="mt-2">
+        <button class="bg-red-500 px-4 py-3 rounded-md text-white font-semibold"><a href=" {{ route('hospitalRequest') }}">Request
+                Blood</a></button>
     </div>
 </div>
 
