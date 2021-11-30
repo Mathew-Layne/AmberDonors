@@ -43,6 +43,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('dashboard/admin/donor', [AdminController::class, 'donor'])->middleware('admin');
     Route::get('dashboard/admin/recipient', [AdminController::class, 'recipient'])->middleware('admin');
     Route::get('dashboard/admin/donations', [AdminController::class, 'donations'])->middleware('admin');
+    Route::get('dashboard/admin/donation/camp', [AdminController::class, 'camp'])->name('bloodcamp')->middleware('admin');
+    Route::post('dashboard/admin/donation/camp', [AdminController::class, 'storeCamp'])->middleware('admin');
     Route::get('dashboard/admin/blood_request', [AdminController::class, 'blood_request'])->name('bloodRequest')->middleware('admin');
 
     Route::get('/dashboard/admin/blood_request/approve/{id}', [AdminController::class, 'approveRequest'])->name('hospitalApprove')->middleware('admin');
