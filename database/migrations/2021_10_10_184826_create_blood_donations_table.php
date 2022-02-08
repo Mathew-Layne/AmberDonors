@@ -15,6 +15,7 @@ class CreateBloodDonationsTable extends Migration
     {
         Schema::create('blood_donations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('donation_camp_id')->constrained('donation_camps')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('donor_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('date_donated');
             $table->integer('blood_quantity');

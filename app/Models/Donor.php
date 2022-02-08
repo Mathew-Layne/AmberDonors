@@ -22,4 +22,16 @@ class Donor extends Model
         'user_id',
     ];
 
+    public function donation()
+    {
+        return $this->hasMany(BloodDonation::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    } 
+
+    public function bloodType(){
+        return $this->belongsTo(BloodType::class);
+    }
 }

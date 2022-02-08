@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class BloodDonation extends Model
 {
     use HasFactory;
+
+    public function donor(){
+        return $this->belongsTo(Donor::class);
+    }
+
+    public function camp(){
+        return $this->belongsTo(DonationCamp::class, 'donation_camp_id');
+    }
 }

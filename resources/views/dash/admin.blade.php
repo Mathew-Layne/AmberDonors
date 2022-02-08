@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url('css/app.css') }}">
     <title>Donor Dashboard</title>
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
 
 </head>
 
@@ -98,6 +99,18 @@
 
                         <span class="mx-3">Request History</span>
                     </a>
+
+                    <a class="flex items-center mt-4 py-2 px-6 text-gray-500 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100"
+                        href="{{ route('bloodcamp') }}">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                            </path>
+                        </svg>
+                    
+                        <span class="mx-3">Blood Camps</span>
+                    </a>
+
                 </nav>
             </div>
             <div class="flex-1 flex flex-col overflow-hidden">
@@ -127,7 +140,7 @@
                     </div>
 
                     <div class="flex items-center">
-                        <span>{{ Auth::user()->name }}</span>
+                        <span class="font-bold mx-3">{{ Auth::user()->name }}</span>
                         <div x-data="{ dropdownOpen: false }" class="relative">
                             <button @click="dropdownOpen = ! dropdownOpen"
                                 class="relative block h-8 w-8 rounded-full overflow-hidden shadow focus:outline-none">
@@ -142,12 +155,15 @@
                             <div x-show="dropdownOpen"
                                 class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10"
                                 style="display: none;">
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Profile</a>
-                                {{-- <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Products</a> --}}
-                                <a href="/login"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a>
+                                
+                                <form action="{{ url('logout') }}" method="post">
+                                    @csrf
+                                    <button class="text-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white" type="submit">
+                                        Logout
+                                    </button>
+                                </form>
+                                {{-- <a href="/logout"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white">Logout</a> --}}
                             </div>
                         </div>
 
@@ -155,52 +171,181 @@
                 </header>
                 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                     <div class="container mx-auto px-6 py-8">
+
                     @if(session()->get('admin') == 'home')
                     
                         <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
 
                         <div class="mt-4">
                             <div class="flex flex-wrap justify-center -mx-6">
-                            @for($x = 0; $x<=7; $x++)
-                                <div class="mx-2 mt-6 px-4 sm:w-1/2 xl:w-1/3">
-                                    <div class="flex items-center px-3 py-4 shadow-sm rounded-md bg-white">
-                                        <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75 MX-5">
-                                            <svg class="h-8 w-8 text-white" viewBox="0 0 28 30" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M18.2 9.08889C18.2 11.5373 16.3196 13.5222 14 13.5222C11.6804 13.5222 9.79999 11.5373 9.79999 9.08889C9.79999 6.64043 11.6804 4.65556 14 4.65556C16.3196 4.65556 18.2 6.64043 18.2 9.08889Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M25.2 12.0444C25.2 13.6768 23.9464 15 22.4 15C20.8536 15 19.6 13.6768 19.6 12.0444C19.6 10.4121 20.8536 9.08889 22.4 9.08889C23.9464 9.08889 25.2 10.4121 25.2 12.0444Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M19.6 22.3889C19.6 19.1243 17.0927 16.4778 14 16.4778C10.9072 16.4778 8.39999 19.1243 8.39999 22.3889V26.8222H19.6V22.3889Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M8.39999 12.0444C8.39999 13.6768 7.14639 15 5.59999 15C4.05359 15 2.79999 13.6768 2.79999 12.0444C2.79999 10.4121 4.05359 9.08889 5.59999 9.08889C7.14639 9.08889 8.39999 10.4121 8.39999 12.0444Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M22.4 26.8222V22.3889C22.4 20.8312 22.0195 19.3671 21.351 18.0949C21.6863 18.0039 22.0378 17.9556 22.4 17.9556C24.7197 17.9556 26.6 19.9404 26.6 22.3889V26.8222H22.4Z"
-                                                    fill="currentColor"></path>
-                                                <path
-                                                    d="M6.64896 18.0949C5.98058 19.3671 5.59999 20.8312 5.59999 22.3889V26.8222H1.39999V22.3889C1.39999 19.9404 3.2804 17.9556 5.59999 17.9556C5.96219 17.9556 6.31367 18.0039 6.64896 18.0949Z"
-                                                    fill="currentColor"></path>
-                                            </svg>
-                                        </div>
+                              <!--------Component------->
+                              <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mt-4">
+                                  <div class="flex items-center px-5 py-7 shadow-sm rounded-md bg-white">
+                                      <div class="p-5 rounded-full bg-red-600 ">
+                                          <i class="far fa-hand-holding-medical text-white text-2xl"></i>
+                                      </div>
 
-                                        <div class="mx-1">
-                                            <h4 class="text-xl font-semibold text-gray-700">Blood Type</h4>
-                                            <div class="font-bold text-lg text-center text-red-600">A+</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endfor
+                                      <div class="mx-5">
+                                          <h4 class="text-2xl font-semibold text-gray-700"></h4>
+                                          <div class="text-gray-500">Total Requests</div>
+                                          <strong>{{ $request }}</strong>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--------Component------->
+
+                              <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mt-4">
+                                  <div class="flex items-center px-5 py-7 shadow-sm rounded-md bg-white">
+                                      <div class="p-5 rounded-full bg-red-600 ">
+                                          <i class="far fa-hand-holding-medical text-white text-2xl"></i>
+                                      </div>
+
+                                      <div class="mx-5">
+                                          <h4 class="text-2xl font-semibold text-gray-700"></h4>
+                                          <div class="text-gray-500">Donors</div>
+                                          <strong>{{ $donor }}</strong>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--------Component------->
+
+                              <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mt-4">
+                                  <div class="flex items-center px-5 py-7 shadow-sm rounded-md bg-white">
+                                      <div class="p-5 rounded-full bg-red-600 ">
+                                          <i class="far fa-hand-holding-medical text-white text-2xl"></i>
+                                      </div>
+
+                                      <div class="mx-5">
+                                          <h4 class="text-2xl font-semibold text-gray-700"></h4>
+                                          <div class="text-gray-500">Recipients</div>
+                                          <strong>{{ $hospital }}</strong>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--------Component------->
+
+                              <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mt-4">
+                                  <div class="flex items-center px-5 py-7 shadow-sm rounded-md bg-white">
+                                      <div class="p-5 rounded-full bg-red-600 ">
+                                          <i class="far fa-hand-holding-medical text-white text-2xl"></i>
+                                      </div>
+
+                                      <div class="mx-5">
+                                          <h4 class="text-2xl font-semibold text-gray-700"></h4>
+                                          <div class="text-gray-500">Total Units Donated (ml) </div>
+                                          <strong>{{ $donation }}</strong>
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--------Component------->
+
+                              <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mt-4">
+                                  <div class="flex items-center px-5 py-7 shadow-sm rounded-md bg-white">
+                                      <div class="p-5 rounded-full bg-red-600 ">
+                                          <i class="far fa-hand-holding-medical text-white text-2xl"></i>
+                                      </div>
+
+                                      <div class="mx-5">
+                                          <h4 class="text-2xl font-semibold text-gray-700"></h4>
+                                          <div class="text-gray-500">Units Requested(ml) </div>
+                                          <strong>{{ $unitsRequested  }}</strong>
+
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--------Component------->
+
+                              <div class="w-full px-6 sm:w-1/2 xl:w-1/3 mt-4">
+                                  <div class="flex items-center px-5 py-7 shadow-sm rounded-md bg-white">
+                                      <div class="p-5 rounded-full bg-red-600 ">
+                                          <i class="far fa-hand-holding-medical text-white text-2xl"></i>
+                                      </div>
+
+                                      <div class="mx-5">
+                                          <h4 class="text-2xl font-semibold text-gray-700"></h4>
+                                          <div class="text-gray-500">Units in Stock (ml) </div>
+                                          <strong>{{ $unitsStock }}</strong>
+
+
+                                      </div>
+                                  </div>
+                              </div>
+                              <!--------Component------->
+
+
                                 
                             </div>
                         </div>
 
-                        <div class="mt-8">
-
+                        <div class="container mx-auto py-8 mt-8">
+                            <h3 class="text-gray-700 text-3xl font-medium">Blood Stock</h3>
+                        
+                            <div class="mt-8">
+                        
+                            </div>
+                        
+                            <div class="flex flex-col mt-8">
+                                <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                                    <div
+                                        class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                        
+                                        <table class="min-w-full border-collapse block md:table">
+                                            <thead class="block md:table-header-group">
+                                                <tr
+                                                    class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Blood Camp</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Address</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Blood Type</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Blood Quantity</th>
+                                                    <th
+                                                        class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                        Last Updated</th>                                                   
+                        
+                                                </tr>
+                                            </thead>
+                                            <tbody class="block md:table-row-group">
+                                                @foreach ($stocks as $stock)
+                                                <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Full
+                                                            Name</span>{{ $stock->donationCamp->branch_name }}</td>
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Blood
+                                                            Type</span>{{ $stock->donationCamp->branch_address }}</td>
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $stock->bloodType->type_name
+                                                        }}</td>
+                        
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Email</span>{{
+                                                        $stock->total_quantity }}
+                                                    </td>
+                                                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                            class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{
+                                                        $stock->updated_at }}
+                                                    </td>
+                                        
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                        
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     
                     @elseif(session()->get('admin') == 'donor')
@@ -208,7 +353,7 @@
                     <div class="text-gray-700 text-3xl font-medium"><h3>Donor</h3></div>
 
                     <div class="md:px-2 py-8">
-                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
+                        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                             <table class="min-w-full border-collapse block md:table">
                                 <thead  class="block md:table-header-group">
                                     <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
@@ -216,27 +361,26 @@
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">D.O.B</th>
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Address</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">City</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Parish</th>
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email</th>
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
+
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="block md:table-row-group">
                                     @foreach ($donors as $donor)                                    
-                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
                                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Full Name</span>{{ $donor->donor_name }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $donor->blood_type }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $donor->bloodType->type_name }}</td>
                                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donor->dob }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donor->donor_address }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">City</span>{{ $donor->city }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Parish</span>{{ $donor->parish }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donor->donor_address.', '.$donor->city.', '. $donor->parish}}</td>                   
                                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donor->donor_email }}</td>
                                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donor->donor_phoneno }}</td>
-                                       
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>{{ $donor->status }}</td>
+
                                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Status</span>
+                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
                                                 <a href="{{ route('donor-approved', ['id' => $donor->id]) }}">
                                                     <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded"> Approve</button>
                                                 </a>
@@ -255,44 +399,33 @@
 
                     @elseif(session()->get('admin') == 'recipient')
 
-                    <div class="text-gray-700 text-3xl font-medium"><h3>Recipient</h3></div>
+                    <div class="text-gray-700 text-3xl font-medium"><h3>Hospital</h3></div>
 
-                    <div class="md:px-32 py-8">
-                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
+                    <div class="py-8">
+                        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                             <table class="min-w-full border-collapse block md:table">
                                 <thead class="block md:table-header-group">
                                     <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Patient's Full Name</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Carrier's Full Name</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Institution's Name</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Institution's Email</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Personnel Name</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Personnel Licence Number</th>
+                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Email</th>
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Institution's Address</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type Requested</th>
                                         <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Institution's Phone Number</th>
-                                        <th class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
-
                                     </tr>
                                 </thead>
                                 <tbody class="block md:table-row-group">
                                     @foreach ($recipients as $recipient)
-                                        <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Patieent's Full Name</span>{{ $recipient->recipient_name }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Carrier's Full Name</span>{{$recipient->carrier_name }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Name</span>{{$recipient->company_name }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Email</span>{{$recipient->company_email }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Address</span>{{$recipient->company_address }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type Requested</span>{{$recipient->blood_type }}</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Phone Numbe</span>{{$recipient->company_phoneno }}</td>
+                                        <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $recipient->hospital_name }}</td>
 
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Status</span>
-                                            <a href="{{ route('recipient-approved', ['id' => $recipient->id]) }}">
-                                                <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded"> Approve</button>
-                                            </a>
-                                            <a href="{{ route('recipient-rejected', ['id' => $recipient->id]) }}">
-                                                <button type="button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 mt-1 border border-red-500 rounded">Deny</button>
-                                            </a>
-                                        </td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Personnel Full Name</span>{{$recipient->user->name }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Personnel Licence Number</span>{{$recipient->personnel_licence_no }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Email</span>{{$recipient->hospital_email }}</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Address</span>{{$recipient->hospital_address." ".$recipient->hospital_city." ".$recipient->hospital_parish }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Institution's Phone Number</span>{{$recipient->hospital_phoneno }}</td>
 
                                     </tr>
                                     @endforeach
@@ -305,136 +438,264 @@
                     
                     @elseif(session()->get('admin') == 'donations')
 
-                    <div class="text-gray-700 text-3xl font-medium"><h3>Donations</h3></div>
-
-                    <div class="md:px-32 py-8">
-                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
-                            <table class="min-w-full border-collapse block md:table">
-                                <thead class="block md:table-header-group">
-                                    <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="block md:table-row-group">
-                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Update</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Delete</button>
-                                        </td>
-                                    </tr>			
-                                </tbody>
-                            </table>
+                   <div class="container mx-auto px-6 py-8">
+                    <h3 class="text-gray-700 text-3xl font-medium">Donation History</h3>
+                
+                    <div class="mt-8">
+                
+                    </div>
+                
+                    <div class="flex flex-col mt-8">
+                        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                            <div
+                                class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                
+                                <table class="min-w-full border-collapse block md:table">
+                                    <thead class="block md:table-header-group">
+                                        <tr
+                                            class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                Full Name</th>
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                Blood Type</th>
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                D.O.B</th>
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                Email</th>
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                Mobile</th>
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                Units (in ml)</th>
+                                            <th
+                                                class="bg-red-500 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                                                Donation Date</th>
+                
+                                        </tr>
+                                    </thead>
+                                    <tbody class="block md:table-row-group">
+                                        @foreach ($donations as $donation)
+                                        <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Full
+                                                    Name</span>{{ $donation->donor->donor_name }}</td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Blood
+                                                    Type</span>{{ $donation->donor->bloodType->type_name }}</td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">D.O.B</span>{{ $donation->donor->dob }}</td>
+                
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Email</span>{{ $donation->donor->donor_email }}
+                                            </td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Mobile</span>{{ $donation->donor->donor_phoneno }}
+                                            </td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">Address</span>{{ $donation->blood_quantity }}
+                                            </td>
+                                            <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span
+                                                    class="inline-block w-1/3 md:hidden font-bold">City</span>{{ $donation->date_donated }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $donations->links() }}
+                            </div>
                         </div>
-                      </div>
+                    </div>
+                </div>
                     
                     
                     @elseif(session()->get('admin') == 'blood_request')
 
                     <div class="text-gray-700 text-3xl font-medium"><h3>Blood Request</h3></div>
 
-                    <div class="md:px-32 py-8">
-                        <div class="shadow overflow-hidden rounded border-b border-gray-200">
+                    <div class="md:px-3 py-8">
+                        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
                             <table class="min-w-full border-collapse block md:table">
                                 <thead class="block md:table-header-group">
                                     <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Name</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">User Name</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Email Address</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Mobile</th>
-                                        <th class="bg-gray-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date of Request</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
+
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Units (ml)</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
+                                        <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="block md:table-row-group">
+                                    @forelse($transactions as $transaction)
+
                                     <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Jamal Rios</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>jrios1</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>jrios@icloud.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-3X2-6233</td>
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $transaction->hospital->hospital_name }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Date of Request</span>{{ $transaction->date_requested }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $transaction->bloodType->type_name }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Units (ml)</span>{{ $transaction->quantity }}</td>
+
+                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>{{ $transaction->status }}</td>
+
                                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                                             <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
+                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">
+                                                <a href="{{ route('hospitalApprove', ['id' => $transaction->id]) }}">Approve</a>
+
+
+
+                                                <button>
+                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">  
+                                                <a href="{{ route('hospitalReject', ['id' => $transaction->id]) }}">Reject</a>
+
+                                            </button>
                                         </td>
                                     </tr>
-                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Erwin Campbell</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>ecampbell088</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>ecampbell088@hotmail.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>318-685-X414</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
-                                        </td>
+                                    @empty
+                                    <tr>
+                                        <td colspan="6">No records</td>
                                     </tr>
-                                    <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Lillie Clark</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>lillie</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>lillie.clark@gmail.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>505-644-84X4</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
-                                        </td>
-                                    </tr>
-                                    <tr class="bg-white border border-grey-500 md:border-none block md:table-row">
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Name</span>Maribel Koch</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">User Name</span>maribelkoch</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Email Address</span>mkoch@yahoo.com</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Mobile</span>582-400-3X36</td>
-                                        <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
-                                            <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 border border-blue-500 rounded">Approve</button>
-                                            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Reject</button>
-                                        </td>
-                                    </tr>			
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                       </div>
+
+                      @elseif(session()->get('admin') == 'request_history')
+
+
+                      <div class="text-gray-700 text-3xl font-medium">
+                          <h3>Blood Request</h3>
+                      </div>
+
+                      <div class="md:px-3 py-8">
+                          <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                              <table class="min-w-full border-collapse block md:table">
+                                  <thead class="block md:table-header-group">
+                                      <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Hospital Name</th>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Date of Request</th>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Blood Type</th>
+
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Units (ml)</th>
+                                          <th class="bg-red-600 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">Status</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="block md:table-row-group">
+                                      @forelse($requests as $transaction)
+
+                                      <tr class="bg-gray-300 border border-grey-500 md:border-none block md:table-row">
+                                          <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Hospital Name</span>{{ $transaction->hospital->hospital_name }}</td>
+
+                                          <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Date of Request</span>{{ $transaction->date_requested }}</td>
+
+                                          <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Blood Type</span>{{ $transaction->bloodType->type_name }}</td>
+
+                                          <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Units (ml)</span>{{ $transaction->quantity }}</td>
+
+                                          <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell"><span class="inline-block w-1/3 md:hidden font-bold">Status</span>{{ $transaction->status }}</td>
+
+                                      </tr>
+                                      @empty
+                                      <tr>
+                                          <td colspan="6">No records</td>
+                                      </tr>
+                                      @endforelse
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+
+                      @elseif(session()->get('admin') == 'camp')
+                    
+                    @if(session('donated'))
+                    <div class="py-3 px-5 mb-4 bg-green-100 text-green-900 text-sm rounded-md border border-green-200 flex items-center"
+                        role="alert">
+                        <div class="w-4 mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                            </svg>
+                        </div>
+                        <span><strong>Awesome</strong>{{ session('camp') }}</span>
+                    </div>
+                    @endif
+                    
+                    <div class="min-h-screen  flex flex-col justify-center sm:py-5">
+                    
+                        <div class="lg:w-6/12 sm:w-10/12 mx-auto">
+                            <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-lg sm:p-10">
+                    
+                    
+                    
+                                <div class="max-w-md mx-auto">
+                                    <div class="flex items-center space-x-5">
+                                        <div
+                                            class="h-14 w-14 bg-red-600 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl font-mono">
+                                            <i class="fas fa-tint"></i>
+                                        </div>
+                                        <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
+                                            <h2 class="leading-relaxed">Donation Camp</h2>
+                                            <p class="text-sm text-gray-500 font-normal leading-relaxed">Save a life today by becoming a
+                                                doner.</p>
+                                        </div>
+                                    </div>
+                    
+                    
+                                    <form method="POST">
+                                        @csrf
+                                        <div class="divide-y divide-gray-200">
+                                            <div class="py-8 text-base leading-6 space-y-2 text-gray-700 sm:text-lg sm:leading-7">                                           
+                    
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Branch Name</label>
+                                                    <input type="text" placeholder="Enter Blood Camp Name" name="branch_name"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('branch_name')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+                    
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Branch Address</label>
+                                                    <input type="text" placeholder="Enter Branch Address" name="branch_address"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('branch_address')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Contact Number</label>
+                                                    <input type="number" placeholder="Enter Contact Number" name="branch_number"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('branch_number')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+
+                                                <div class="flex flex-col">
+                                                    <label class="leading-loose">Opening Hours</label>
+                                                    <input type="text" placeholder="Enter Opening Hours" name="hours"
+                                                        class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
+                                                    @error('hours')<span class="text-xs text-red-600">{{ $message }}</span>@enderror
+                                                </div>
+                                            </div>
+                                            <div class="pt-4 flex items-center">
+                                                <button type="submit"
+                                                    class="bg-red-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none font-bold">
+                                                    Add Camp</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                    
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     @endif
 

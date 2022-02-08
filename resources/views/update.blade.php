@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Update Profile</title>
 </head>
 <body>
     
@@ -13,7 +13,7 @@
 
 
      <div>
-        <form action="{{ route('onupdate-profile')}}" method="post">
+        <form action="{{ route('donor-onUpdate') }}" method="post">
          @csrf
             <label for="full_name">Full Name</label>
                 <input type="hidden" name="id" value="{{ $donor->id }}" />

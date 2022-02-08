@@ -15,12 +15,12 @@ class CreateBloodTransactionsTable extends Migration
     {
         Schema::create('blood_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('medical_personnel_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('dateout');
+            $table->foreignId('hospital_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('donation_camp_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('date_requested');
             $table->integer('quantity');
-            $table->foreignId('recipient_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->string('blood_type');
-            $table->string('blood_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('blood_type_id')->constrained('blood_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
